@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: blockdevices.blockdevice.crossplane.io
 spec:
   group: blockdevice.crossplane.io
@@ -97,7 +97,6 @@ spec:
                       type: string
                     description: |-
                       Additional custom properties that may be used to extend the block device. Following disk custom properties can be passed while creating a block device:
-
 
                       1. dataStore: Defines name of the datastore in which the disk has to be provisioned.
                       2. storagePolicy: Defines name of the storage policy in which the disk has to be provisioned. If name of the datastore is specified in the custom properties then, datastore takes precedence.
@@ -264,7 +263,6 @@ spec:
                       type: string
                     description: |-
                       Additional custom properties that may be used to extend the block device. Following disk custom properties can be passed while creating a block device:
-
 
                       1. dataStore: Defines name of the datastore in which the disk has to be provisioned.
                       2. storagePolicy: Defines name of the storage policy in which the disk has to be provisioned. If name of the datastore is specified in the custom properties then, datastore takes precedence.
@@ -603,7 +601,6 @@ spec:
                       type: string
                     description: |-
                       Additional custom properties that may be used to extend the block device. Following disk custom properties can be passed while creating a block device:
-
 
                       1. dataStore: Defines name of the datastore in which the disk has to be provisioned.
                       2. storagePolicy: Defines name of the storage policy in which the disk has to be provisioned. If name of the datastore is specified in the custom properties then, datastore takes precedence.
