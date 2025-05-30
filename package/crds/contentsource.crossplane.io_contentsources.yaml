@@ -73,22 +73,20 @@ spec:
               forProvider:
                 properties:
                   config:
-                    items:
-                      properties:
-                        branch:
-                          type: string
-                        contentType:
-                          type: string
-                        integrationId:
-                          type: string
-                        path:
-                          type: string
-                        projectName:
-                          type: string
-                        repository:
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        type: string
+                      contentType:
+                        type: string
+                      integrationId:
+                        type: string
+                      path:
+                        type: string
+                      projectName:
+                        type: string
+                      repository:
+                        type: string
+                    type: object
                   description:
                     type: string
                   name:
@@ -188,22 +186,20 @@ spec:
                   autoscaler.
                 properties:
                   config:
-                    items:
-                      properties:
-                        branch:
-                          type: string
-                        contentType:
-                          type: string
-                        integrationId:
-                          type: string
-                        path:
-                          type: string
-                        projectName:
-                          type: string
-                        repository:
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        type: string
+                      contentType:
+                        type: string
+                      integrationId:
+                        type: string
+                      path:
+                        type: string
+                      projectName:
+                        type: string
+                      repository:
+                        type: string
+                    type: object
                   description:
                     type: string
                   name:
@@ -479,22 +475,20 @@ spec:
               atProvider:
                 properties:
                   config:
-                    items:
-                      properties:
-                        branch:
-                          type: string
-                        contentType:
-                          type: string
-                        integrationId:
-                          type: string
-                        path:
-                          type: string
-                        projectName:
-                          type: string
-                        repository:
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        type: string
+                      contentType:
+                        type: string
+                      integrationId:
+                        type: string
+                      path:
+                        type: string
+                      projectName:
+                        type: string
+                      repository:
+                        type: string
+                    type: object
                   createdAt:
                     type: string
                   createdBy:

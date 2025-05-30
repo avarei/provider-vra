@@ -188,7 +188,7 @@ type MachineInitParameters struct {
 	AttachDisksBeforeBoot *bool `json:"attachDisksBeforeBoot,omitempty" tf:"attach_disks_before_boot,omitempty"`
 
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-	BootConfig []BootConfigInitParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigInitParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
 	Constraints []ConstraintsInitParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
@@ -241,7 +241,7 @@ type MachineObservation struct {
 	AttachDisksBeforeBoot *bool `json:"attachDisksBeforeBoot,omitempty" tf:"attach_disks_before_boot,omitempty"`
 
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-	BootConfig []BootConfigObservation `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigObservation `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
 	Constraints []ConstraintsObservation `json:"constraints,omitempty" tf:"constraints,omitempty"`
@@ -309,7 +309,7 @@ type MachineParameters struct {
 
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
 	// +kubebuilder:validation:Optional
-	BootConfig []BootConfigParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
 	// +kubebuilder:validation:Optional

@@ -96,64 +96,62 @@ spec:
                   constraints:
                     description: List of storage, network and extensibility constraints
                       to be applied when provisioning through this project.
-                    items:
-                      properties:
-                        extensibility:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        network:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        storage:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                      type: object
-                    type: array
+                    properties:
+                      extensibility:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      network:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      storage:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                    type: object
                   customProperties:
                     additionalProperties:
                       type: string
@@ -305,64 +303,62 @@ spec:
                   constraints:
                     description: List of storage, network and extensibility constraints
                       to be applied when provisioning through this project.
-                    items:
-                      properties:
-                        extensibility:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        network:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        storage:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                      type: object
-                    type: array
+                    properties:
+                      extensibility:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      network:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      storage:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                    type: object
                   customProperties:
                     additionalProperties:
                       type: string
@@ -678,64 +674,62 @@ spec:
                   constraints:
                     description: List of storage, network and extensibility constraints
                       to be applied when provisioning through this project.
-                    items:
-                      properties:
-                        extensibility:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        network:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                        storage:
-                          description: Constraints that are used to drive placement
-                            policies for entities such as image, network, storage,
-                            etc. Constraint expressions are matched against tags on
-                            existing placement targets.
-                          items:
-                            properties:
-                              expression:
-                                description: An expression of the form "[!]tag-key[:[tag-value]]",
-                                  used to indicate a constraint match on keys and
-                                  values of tags.
-                                type: string
-                              mandatory:
-                                description: Indicates whether this constraint should
-                                  be strictly enforced or not.
-                                type: boolean
-                            type: object
-                          type: array
-                      type: object
-                    type: array
+                    properties:
+                      extensibility:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      network:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                      storage:
+                        description: Constraints that are used to drive placement
+                          policies for entities such as image, network, storage, etc.
+                          Constraint expressions are matched against tags on existing
+                          placement targets.
+                        items:
+                          properties:
+                            expression:
+                              description: An expression of the form "[!]tag-key[:[tag-value]]",
+                                used to indicate a constraint match on keys and values
+                                of tags.
+                              type: string
+                            mandatory:
+                              description: Indicates whether this constraint should
+                                be strictly enforced or not.
+                              type: boolean
+                          type: object
+                        type: array
+                    type: object
                   customProperties:
                     additionalProperties:
                       type: string

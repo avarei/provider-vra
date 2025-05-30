@@ -178,7 +178,7 @@ type ProjectInitParameters struct {
 	Administrators []*string `json:"administrators,omitempty" tf:"administrators,omitempty"`
 
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
-	Constraints []ConstraintsInitParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsInitParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project
 	// +mapType=granular
@@ -233,7 +233,7 @@ type ProjectObservation struct {
 	Administrators []*string `json:"administrators,omitempty" tf:"administrators,omitempty"`
 
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
-	Constraints []ConstraintsObservation `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsObservation `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project
 	// +mapType=granular
@@ -293,7 +293,7 @@ type ProjectParameters struct {
 
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
 	// +kubebuilder:validation:Optional
-	Constraints []ConstraintsParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project
 	// +kubebuilder:validation:Optional

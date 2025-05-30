@@ -81,14 +81,12 @@ spec:
                     description: Machine boot config that will be passed to the instance
                       that can be used to perform common automated configuration tasks
                       and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: A valid cloud config data in json-escaped yaml
-                            syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: A valid cloud config data in json-escaped yaml
+                          syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: Constraints that are used to drive placement policies
                       for entities such as image, network, storage, etc. Constraint
@@ -306,14 +304,12 @@ spec:
                     description: Machine boot config that will be passed to the instance
                       that can be used to perform common automated configuration tasks
                       and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: A valid cloud config data in json-escaped yaml
-                            syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: A valid cloud config data in json-escaped yaml
+                          syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: Constraints that are used to drive placement policies
                       for entities such as image, network, storage, etc. Constraint
@@ -701,14 +697,12 @@ spec:
                     description: Machine boot config that will be passed to the instance
                       that can be used to perform common automated configuration tasks
                       and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: A valid cloud config data in json-escaped yaml
-                            syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: A valid cloud config data in json-escaped yaml
+                          syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: Constraints that are used to drive placement policies
                       for entities such as image, network, storage, etc. Constraint

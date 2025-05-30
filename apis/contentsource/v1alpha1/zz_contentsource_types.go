@@ -63,7 +63,7 @@ type ConfigParameters struct {
 }
 
 type ContentSourceInitParameters struct {
-	Config []ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -86,7 +86,7 @@ type ContentSourceInitParameters struct {
 }
 
 type ContentSourceObservation struct {
-	Config []ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
 
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
@@ -114,7 +114,7 @@ type ContentSourceObservation struct {
 type ContentSourceParameters struct {
 
 	// +kubebuilder:validation:Optional
-	Config []ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`

@@ -516,10 +516,8 @@ func (in *MachineInitParameters) DeepCopyInto(out *MachineInitParameters) {
 	}
 	if in.BootConfig != nil {
 		in, out := &in.BootConfig, &out.BootConfig
-		*out = make([]BootConfigInitParameters, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(BootConfigInitParameters)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints
@@ -676,10 +674,8 @@ func (in *MachineObservation) DeepCopyInto(out *MachineObservation) {
 	}
 	if in.BootConfig != nil {
 		in, out := &in.BootConfig, &out.BootConfig
-		*out = make([]BootConfigObservation, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(BootConfigObservation)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints
@@ -848,10 +844,8 @@ func (in *MachineParameters) DeepCopyInto(out *MachineParameters) {
 	}
 	if in.BootConfig != nil {
 		in, out := &in.BootConfig, &out.BootConfig
-		*out = make([]BootConfigParameters, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(BootConfigParameters)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints

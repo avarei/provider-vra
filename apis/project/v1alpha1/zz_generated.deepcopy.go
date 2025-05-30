@@ -470,10 +470,8 @@ func (in *ProjectInitParameters) DeepCopyInto(out *ProjectInitParameters) {
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints
-		*out = make([]ConstraintsInitParameters, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(ConstraintsInitParameters)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.CustomProperties != nil {
 		in, out := &in.CustomProperties, &out.CustomProperties
@@ -638,10 +636,8 @@ func (in *ProjectObservation) DeepCopyInto(out *ProjectObservation) {
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints
-		*out = make([]ConstraintsObservation, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(ConstraintsObservation)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.CustomProperties != nil {
 		in, out := &in.CustomProperties, &out.CustomProperties
@@ -779,10 +775,8 @@ func (in *ProjectParameters) DeepCopyInto(out *ProjectParameters) {
 	}
 	if in.Constraints != nil {
 		in, out := &in.Constraints, &out.Constraints
-		*out = make([]ConstraintsParameters, len(*in))
-		for i := range *in {
-			(*in)[i].DeepCopyInto(&(*out)[i])
-		}
+		*out = new(ConstraintsParameters)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.CustomProperties != nil {
 		in, out := &in.CustomProperties, &out.CustomProperties
