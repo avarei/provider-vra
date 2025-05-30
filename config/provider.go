@@ -28,7 +28,6 @@ import (
 	project "github.com/avarei/provider-vra/config/project"
 	storage "github.com/avarei/provider-vra/config/storage"
 	zone "github.com/avarei/provider-vra/config/zone"
-	tfvra "github.com/vmware/terraform-provider-vra/vra"
 
 	"github.com/pkg/errors"
 
@@ -39,6 +38,7 @@ import (
 
 	tfjson "github.com/hashicorp/terraform-json"
 	tfschema "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	tfvra "github.com/vmware/terraform-provider-vra/vra"
 )
 
 const (
