@@ -17,3 +17,6 @@ metadata:
       the
       [avarei/provider-vra](https://github.com/avarei/provider-vra)
       repo.
+spec:
+  capabilities:
+  - SafeStart

@@ -1,0 +1,17 @@
+apiVersion: blueprint.vra.crossplane.io/v1alpha1
+kind: Version
+metadata:
+  annotations:
+    meta.upbound.io/example-id: blueprint/v1alpha1/version
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    blueprintIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    changeLog: First version
+    description: Released from VMware Aria Automation terraform provider
+    release: true
+    version: ${(random_integer.suffix.result / random_integer.suffix.result)}

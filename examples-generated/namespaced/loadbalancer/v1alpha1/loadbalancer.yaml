@@ -1,0 +1,35 @@
+apiVersion: loadbalancer.vra.m.crossplane.io/v1alpha1
+kind: LoadBalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: loadbalancer/v1alpha1/loadbalancer
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    customProperties:
+      edgeClusterRouterStateLink: /resources/routers/<uuid>
+      tier0LogicalRouterStateLink: /resources/routers/<uuid>
+    description: My Load Balancer
+    name: my-load-balancer
+    nics:
+    - networkId: ${data.vra_network.my-network.id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-project
+    routes:
+    - healthCheckConfiguration:
+      - healthyThreshold: 10
+        intervalSeconds: 30
+        port: "80"
+        protocol: TCP
+        timeoutSeconds: 10
+        unhealthyThreshold: 2
+      memberPort: "80"
+      memberProtocol: TCP
+      port: "80"
+      protocol: TCP
+    targets:
+    - machineId: ${vra_machine.my_machine.id}

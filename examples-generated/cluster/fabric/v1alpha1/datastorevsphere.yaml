@@ -1,0 +1,13 @@
+apiVersion: fabric.vra.crossplane.io/v1alpha1
+kind: DatastoreVsphere
+metadata:
+  annotations:
+    meta.upbound.io/example-id: fabric/v1alpha1/datastorevsphere
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    tags:
+    - key: foo
+      value: bar

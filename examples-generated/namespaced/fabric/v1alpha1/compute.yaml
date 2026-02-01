@@ -1,0 +1,14 @@
+apiVersion: fabric.vra.m.crossplane.io/v1alpha1
+kind: Compute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: fabric/v1alpha1/compute
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    tags:
+    - key: foo
+      value: bar

@@ -1,0 +1,14 @@
+apiVersion: catalogsourceentitlement.vra.crossplane.io/v1alpha1
+kind: CatalogSourceEntitlement
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalogsourceentitlement/v1alpha1/catalogsourceentitlement
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    catalogSourceId: ${var.catalog_source_blueprint_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

@@ -1,0 +1,21 @@
+apiVersion: storage.vra.crossplane.io/v1alpha1
+kind: ProfileAzure
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/profileazure
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    dataDiskCaching: None
+    defaultItem: false
+    description: Azure Storage Profile with managed disks.
+    diskType: Standard_LRS
+    name: azure-with-managed-disks-1
+    osDiskCaching: None
+    regionId: ${data.vra_region.this.id}
+    supportsEncryption: false
+    tags:
+    - key: foo
+      value: bar

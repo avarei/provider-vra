@@ -1,0 +1,25 @@
+apiVersion: imageprofile.vra.m.crossplane.io/v1alpha1
+kind: Profile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: imageprofile/v1alpha1/profile
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: test image profile
+    imageMapping:
+    - constraints:
+      - expression: '!env:Test'
+        mandatory: true
+      - expression: foo:bar
+        mandatory: false
+      imageId: ${data.vra_image.centos.id}
+      name: centos
+    - cloudConfig: runcmd echo 'Hello'
+      imageId: ${data.vra_image.photon.id}
+      name: photon
+    name: vra-image-profile
+    regionId: ${data.vra_region.this.id}

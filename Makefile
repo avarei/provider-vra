@@ -2,13 +2,13 @@
 # Setup Project
 
 PROJECT_NAME ?= provider-vra
-PROJECT_REPO ?= github.com/avarei/$(PROJECT_NAME)
+PROJECT_REPO ?= github.com/avarei/$(PROJECT_NAME)/v2
 
 export TERRAFORM_VERSION := 1.5.5
 
 export TERRAFORM_PROVIDER_SOURCE ?= vmware/vra
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/vmware/terraform-provider-vra
-export TERRAFORM_PROVIDER_VERSION ?= 0.13.0
+export TERRAFORM_PROVIDER_VERSION ?= 0.16.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-vra
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
@@ -47,9 +47,10 @@ GO_SUBDIRS += cmd internal apis
 # ====================================================================================
 # Setup Kubernetes tools
 
-KIND_VERSION = v0.24.0
-UP_VERSION = v0.33.0
+KIND_VERSION = v0.30.0
+UP_VERSION = v0.41.0
 UP_CHANNEL = stable
+CROSSPLANE_VERSION = 2.0.2
 UPTEST_VERSION = v1.1.2
 -include build/makelib/k8s_tools.mk
 

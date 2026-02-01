@@ -1,0 +1,14 @@
+apiVersion: blockdevice.vra.crossplane.io/v1alpha1
+kind: BlockDeviceSnapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: blockdevice/v1alpha1/blockdevicesnapshot
+  labels:
+    testing.upbound.io/example-name: snapshot1
+  name: snapshot1
+spec:
+  forProvider:
+    blockDeviceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    description: terraform fcd snapshot

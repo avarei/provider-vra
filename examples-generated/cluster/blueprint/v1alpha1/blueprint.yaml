@@ -1,0 +1,30 @@
+apiVersion: blueprint.vra.crossplane.io/v1alpha1
+kind: Blueprint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: blueprint/v1alpha1/blueprint
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    content: |
+      formatVersion: 1
+      inputs:
+        image:
+          type: string
+          description: "Image"
+        flavor:
+          type: string
+          description: "Flavor"
+      resources:
+        Machine:
+          type: Cloud.Machine
+          properties:
+            image: $${input.image}
+            flavor: $${input.flavor}
+    description: Created by VMware Aria Automation terraform provider
+    name: ${var.blueprint_name}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: this

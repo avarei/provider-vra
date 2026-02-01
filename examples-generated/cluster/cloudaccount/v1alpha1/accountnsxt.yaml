@@ -1,0 +1,23 @@
+apiVersion: cloudaccount.vra.crossplane.io/v1alpha1
+kind: AccountNsxt
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudaccount/v1alpha1/accountnsxt
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    acceptSelfSignedCert: true
+    dcId: ${var.vra_data_collector_id}
+    description: foobar
+    hostname: ${var.hostname}
+    name: tf-nsx-t-account
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    tags:
+    - key: foo
+      value: bar
+    username: ${var.username}

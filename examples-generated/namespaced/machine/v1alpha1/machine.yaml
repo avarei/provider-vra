@@ -1,0 +1,42 @@
+apiVersion: machine.vra.m.crossplane.io/v1alpha1
+kind: Machine
+metadata:
+  annotations:
+    meta.upbound.io/example-id: machine/v1alpha1/machine
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    bootConfig:
+    - content: |
+        #cloud-config
+          users:
+          - default
+          - name: myuser
+            sudo: ['ALL=(ALL) NOPASSWD:ALL']
+            groups: [wheel, sudo, admin]
+            shell: '/bin/bash'
+            ssh-authorized-keys: |
+              ssh-rsa your-ssh-rsa:
+            - sudo sed -e 's/.*PasswordAuthentication yes.*/PasswordAuthentication no/' -i /etc/ssh/sshd_config
+            - sudo service sshd restart
+    constraints:
+    - expression: AWS
+      mandatory: true
+    description: terraform test machine
+    disks:
+    - blockDeviceId: ${vra_block_device.disk1.id}
+    - blockDeviceId: ${vra_block_device.disk2.id}
+    flavor: medium
+    image: ubuntu2
+    name: tf-machine
+    nics:
+    - networkId: ${data.vra_network.this.id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vra_project
+    tags:
+    - key: foo
+      value: bar

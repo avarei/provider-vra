@@ -1,0 +1,23 @@
+apiVersion: cloudaccount.vra.m.crossplane.io/v1alpha1
+kind: AccountAws
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudaccount/v1alpha1/accountaws
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    accessKey: ${var.access_key}
+    description: terraform test cloud account aws
+    name: tf-vra-cloud-account-aws
+    regions:
+    - us-east-1
+    - us-west-1
+    secretKeySecretRef:
+      key: example-key
+      name: example-secret
+    tags:
+    - key: foo
+      value: bar
