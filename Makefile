@@ -50,8 +50,9 @@ GO_SUBDIRS += cmd internal apis
 KIND_VERSION = v0.30.0
 UP_VERSION = v0.41.0
 UP_CHANNEL = stable
-CROSSPLANE_VERSION = 2.0.2
-UPTEST_VERSION = v1.1.2
+CROSSPLANE_VERSION = v2.1.3
+CROSSPLANE_CLI_VERSION = v2.1.3
+UPTEST_VERSION = v2.2.0
 -include build/makelib/k8s_tools.mk
 
 # ====================================================================================
@@ -68,6 +69,10 @@ XPKG_REG_ORGS ?= ghcr.io/avarei
 XPKG_REG_ORGS_NO_PROMOTE ?=
 XPKGS = $(PROJECT_NAME)
 -include build/makelib/xpkg.mk
+
+# NOTE(hasheddan): we ensure up is installed prior to running platform-specific
+# build steps in parallel to avoid encountering an installation race condition.
+build.init: $(CROSSPLANE_CLI)
 
 # ====================================================================================
 # Fallthrough
