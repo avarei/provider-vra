@@ -1,4 +1,4 @@
-apiVersion: fabric.vra.crossplane.io/v1alpha1
+apiVersion: fabric.crossplane.io/v1alpha1
 kind: NetworkVsphere
 metadata:
   annotations:

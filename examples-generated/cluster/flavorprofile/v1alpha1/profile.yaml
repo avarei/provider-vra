@@ -1,4 +1,4 @@
-apiVersion: flavorprofile.vra.crossplane.io/v1alpha1
+apiVersion: flavorprofile.crossplane.io/v1alpha1
 kind: Profile
 metadata:
   annotations:

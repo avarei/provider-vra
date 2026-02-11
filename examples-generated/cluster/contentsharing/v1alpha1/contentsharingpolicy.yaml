@@ -1,4 +1,4 @@
-apiVersion: contentsharing.vra.crossplane.io/v1alpha1
+apiVersion: contentsharing.crossplane.io/v1alpha1
 kind: ContentSharingPolicy
 metadata:
   annotations:

@@ -1,4 +1,4 @@
-apiVersion: imageprofile.vra.crossplane.io/v1alpha1
+apiVersion: imageprofile.crossplane.io/v1alpha1
 kind: Profile
 metadata:
   annotations:

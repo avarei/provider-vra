@@ -1,4 +1,4 @@
-apiVersion: network.vra.crossplane.io/v1alpha1
+apiVersion: network.crossplane.io/v1alpha1
 kind: NetworkProfile
 metadata:
   annotations:

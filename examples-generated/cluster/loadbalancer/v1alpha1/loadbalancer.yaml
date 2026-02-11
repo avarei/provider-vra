@@ -1,4 +1,4 @@
-apiVersion: loadbalancer.vra.crossplane.io/v1alpha1
+apiVersion: loadbalancer.crossplane.io/v1alpha1
 kind: LoadBalancer
 metadata:
   annotations:

@@ -1,4 +1,4 @@
-apiVersion: catalogitementitlement.vra.crossplane.io/v1alpha1
+apiVersion: catalogitementitlement.crossplane.io/v1alpha1
 kind: CatalogItemEntitlement
 metadata:
   annotations:

@@ -1,4 +1,4 @@
-apiVersion: machine.vra.crossplane.io/v1alpha1
+apiVersion: machine.crossplane.io/v1alpha1
 kind: Machine
 metadata:
   annotations:

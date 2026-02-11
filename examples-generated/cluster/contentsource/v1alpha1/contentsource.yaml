@@ -1,4 +1,4 @@
-apiVersion: contentsource.vra.crossplane.io/v1alpha1
+apiVersion: contentsource.crossplane.io/v1alpha1
 kind: ContentSource
 metadata:
   annotations:

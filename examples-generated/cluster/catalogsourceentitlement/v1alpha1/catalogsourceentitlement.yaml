@@ -1,4 +1,4 @@
-apiVersion: catalogsourceentitlement.vra.crossplane.io/v1alpha1
+apiVersion: catalogsourceentitlement.crossplane.io/v1alpha1
 kind: CatalogSourceEntitlement
 metadata:
   annotations:

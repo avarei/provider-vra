@@ -1,4 +1,4 @@
-apiVersion: blueprint.vra.crossplane.io/v1alpha1
+apiVersion: blueprint.crossplane.io/v1alpha1
 kind: Blueprint
 metadata:
   annotations:

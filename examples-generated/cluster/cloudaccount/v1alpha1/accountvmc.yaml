@@ -1,4 +1,4 @@
-apiVersion: cloudaccount.vra.crossplane.io/v1alpha1
+apiVersion: cloudaccount.crossplane.io/v1alpha1
 kind: AccountVmc
 metadata:
   annotations:

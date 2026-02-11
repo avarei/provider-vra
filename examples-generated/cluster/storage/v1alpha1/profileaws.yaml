@@ -1,4 +1,4 @@
-apiVersion: storage.vra.crossplane.io/v1alpha1
+apiVersion: storage.crossplane.io/v1alpha1
 kind: ProfileAws
 metadata:
   annotations:

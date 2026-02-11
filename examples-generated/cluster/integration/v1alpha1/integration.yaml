@@ -1,4 +1,4 @@
-apiVersion: integration.vra.crossplane.io/v1alpha1
+apiVersion: integration.crossplane.io/v1alpha1
 kind: Integration
 metadata:
   annotations:

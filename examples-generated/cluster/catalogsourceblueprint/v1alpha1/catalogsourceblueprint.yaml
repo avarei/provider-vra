@@ -1,4 +1,4 @@
-apiVersion: catalogsourceblueprint.vra.crossplane.io/v1alpha1
+apiVersion: catalogsourceblueprint.crossplane.io/v1alpha1
 kind: CatalogSourceBlueprint
 metadata:
   annotations:

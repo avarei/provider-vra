@@ -1,4 +1,4 @@
-apiVersion: zone.vra.crossplane.io/v1alpha1
+apiVersion: zone.crossplane.io/v1alpha1
 kind: Zone
 metadata:
   annotations:
