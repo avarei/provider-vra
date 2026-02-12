@@ -26,15 +26,24 @@ type ContentSharingPolicyInitParameters struct {
 	CatalogSourceIds []*string `json:"catalogSourceIds,omitempty" tf:"catalog_source_ids,omitempty"`
 
 	// The policy description.
-	// The policy description.
+	// A human-friendly description for the policy instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Entitlement type.
+	EntitlementType *string `json:"entitlementType,omitempty" tf:"entitlement_type,omitempty"`
+
 	// The policy name.
-	// The policy name.
+	// A human-friendly name used as an identifier for the policy instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// List of users or roles that can share content.
+	Principals []PrincipalsInitParameters `json:"principals,omitempty" tf:"principals,omitempty"`
+
+	// The project based criteria.
+	ProjectCriteria []map[string]*string `json:"projectCriteria,omitempty" tf:"project_criteria,omitempty"`
+
 	// The ID of the project to which the policy belongs.
-	// The ID of the project to which the policy belongs.
+	// The id of the project this entity belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -60,37 +69,49 @@ type ContentSharingPolicyObservation struct {
 	CatalogSourceIds []*string `json:"catalogSourceIds,omitempty" tf:"catalog_source_ids,omitempty"`
 
 	// Policy creation timestamp.
-	// Policy creation timestamp.
+	// Date when the entity was created. The date is in ISO 8601 and UTC.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// Policy author.
-	// Policy author.
+	// The user the entity was created by.
 	CreatedBy *string `json:"createdBy,omitempty" tf:"created_by,omitempty"`
 
 	// The policy description.
-	// The policy description.
+	// A human-friendly description for the policy instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The type of enforcement for the policy.
+	EnforcementType *string `json:"enforcementType,omitempty" tf:"enforcement_type,omitempty"`
+
+	// Entitlement type.
+	EntitlementType *string `json:"entitlementType,omitempty" tf:"entitlement_type,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Most recent policy update timestamp.
-	// Most recent policy update timestamp.
+	// Date when the entity was last updated. The date is ISO 8601 and UTC.
 	LastUpdatedAt *string `json:"lastUpdatedAt,omitempty" tf:"last_updated_at,omitempty"`
 
 	// Most recent policy editor.
-	// Most recent policy editor..
+	// The user the entity was last updated by.
 	LastUpdatedBy *string `json:"lastUpdatedBy,omitempty" tf:"last_updated_by,omitempty"`
 
 	// The policy name.
-	// The policy name.
+	// A human-friendly name used as an identifier for the policy instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The ID of the organization to which the policy belongs.
-	// The ID of the organization to which the policy belongs.
+	// The id of the organization this entity belongs to.
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
 
+	// List of users or roles that can share content.
+	Principals []PrincipalsObservation `json:"principals,omitempty" tf:"principals,omitempty"`
+
+	// The project based criteria.
+	ProjectCriteria []map[string]*string `json:"projectCriteria,omitempty" tf:"project_criteria,omitempty"`
+
 	// The ID of the project to which the policy belongs.
-	// The ID of the project to which the policy belongs.
+	// The id of the project this entity belongs to.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 }
 
@@ -109,17 +130,29 @@ type ContentSharingPolicyParameters struct {
 	CatalogSourceIds []*string `json:"catalogSourceIds,omitempty" tf:"catalog_source_ids,omitempty"`
 
 	// The policy description.
-	// The policy description.
+	// A human-friendly description for the policy instance.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Entitlement type.
+	// +kubebuilder:validation:Optional
+	EntitlementType *string `json:"entitlementType,omitempty" tf:"entitlement_type,omitempty"`
+
 	// The policy name.
-	// The policy name.
+	// A human-friendly name used as an identifier for the policy instance.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// List of users or roles that can share content.
+	// +kubebuilder:validation:Optional
+	Principals []PrincipalsParameters `json:"principals,omitempty" tf:"principals,omitempty"`
+
+	// The project based criteria.
+	// +kubebuilder:validation:Optional
+	ProjectCriteria []map[string]*string `json:"projectCriteria,omitempty" tf:"project_criteria,omitempty"`
+
 	// The ID of the project to which the policy belongs.
-	// The ID of the project to which the policy belongs.
+	// The id of the project this entity belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -131,6 +164,35 @@ type ContentSharingPolicyParameters struct {
 	// Selector for a Project in project to populate projectId.
 	// +kubebuilder:validation:Optional
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
+}
+
+type PrincipalsInitParameters struct {
+
+	// The reference ID of the principal.
+	ReferenceID *string `json:"referenceId,omitempty" tf:"reference_id,omitempty"`
+
+	// The type of the principal.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type PrincipalsObservation struct {
+
+	// The reference ID of the principal.
+	ReferenceID *string `json:"referenceId,omitempty" tf:"reference_id,omitempty"`
+
+	// The type of the principal.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type PrincipalsParameters struct {
+
+	// The reference ID of the principal.
+	// +kubebuilder:validation:Optional
+	ReferenceID *string `json:"referenceId,omitempty" tf:"reference_id,omitempty"`
+
+	// The type of the principal.
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type" tf:"type,omitempty"`
 }
 
 // ContentSharingPolicySpec defines the desired state of ContentSharingPolicy

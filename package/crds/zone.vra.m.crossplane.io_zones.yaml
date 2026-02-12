@@ -92,7 +92,7 @@ spec:
                   placementPolicy:
                     description: |-
                       The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-                      The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+                      The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
                     type: string
                   regionId:
                     description: |-
@@ -173,7 +173,7 @@ spec:
                   placementPolicy:
                     description: |-
                       The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-                      The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+                      The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
                     type: string
                   regionId:
                     description: |-
@@ -356,7 +356,7 @@ spec:
                   placementPolicy:
                     description: |-
                       The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-                      The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+                      The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
                     type: string
                   regionId:
                     description: |-

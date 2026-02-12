@@ -33,6 +33,10 @@ type AccountVsphereInitParameters struct {
 	// A human-friendly description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// A set of region names that are enabled for the cloud account.
+	// The set of regions that will be enabled for this cloud account.
+	EnabledRegions []EnabledRegionsInitParameters `json:"enabledRegions,omitempty" tf:"enabled_regions,omitempty"`
+
 	// IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.
 	// IP address or FQDN of the vCenter Server.
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
@@ -96,6 +100,10 @@ type AccountVsphereObservation struct {
 	// A human-friendly description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// A set of region names that are enabled for the cloud account.
+	// The set of regions that will be enabled for this cloud account.
+	EnabledRegions []EnabledRegionsObservation `json:"enabledRegions,omitempty" tf:"enabled_regions,omitempty"`
+
 	// IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.
 	// IP address or FQDN of the vCenter Server.
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
@@ -158,6 +166,11 @@ type AccountVsphereParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// A set of region names that are enabled for the cloud account.
+	// The set of regions that will be enabled for this cloud account.
+	// +kubebuilder:validation:Optional
+	EnabledRegions []EnabledRegionsParameters `json:"enabledRegions,omitempty" tf:"enabled_regions,omitempty"`
+
 	// IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.
 	// IP address or FQDN of the vCenter Server.
 	// +kubebuilder:validation:Optional
@@ -210,6 +223,45 @@ type AccountVsphereTagsParameters struct {
 	Value *string `json:"value" tf:"value,omitempty"`
 }
 
+type EnabledRegionsInitParameters struct {
+
+	// ID of the vSphere cloud account.
+	// Unique identifier of the region on the provider side.
+	ExternalRegionID *string `json:"externalRegionId,omitempty" tf:"external_region_id,omitempty"`
+
+	// Name of the vSphere cloud account.
+	// Name of the region on the provider side.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type EnabledRegionsObservation struct {
+
+	// ID of the vSphere cloud account.
+	// Unique identifier of the region on the provider side.
+	ExternalRegionID *string `json:"externalRegionId,omitempty" tf:"external_region_id,omitempty"`
+
+	// ID of the vSphere cloud account.
+	// Unique identifier of the region.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Name of the vSphere cloud account.
+	// Name of the region on the provider side.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type EnabledRegionsParameters struct {
+
+	// ID of the vSphere cloud account.
+	// Unique identifier of the region on the provider side.
+	// +kubebuilder:validation:Optional
+	ExternalRegionID *string `json:"externalRegionId" tf:"external_region_id,omitempty"`
+
+	// Name of the vSphere cloud account.
+	// Name of the region on the provider side.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name" tf:"name,omitempty"`
+}
+
 // AccountVsphereSpec defines the desired state of AccountVsphere
 type AccountVsphereSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
@@ -249,7 +301,6 @@ type AccountVsphere struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.hostname) || (has(self.initProvider) && has(self.initProvider.hostname))",message="spec.forProvider.hostname is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.passwordSecretRef)",message="spec.forProvider.passwordSecretRef is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regions) || (has(self.initProvider) && has(self.initProvider.regions))",message="spec.forProvider.regions is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.username) || (has(self.initProvider) && has(self.initProvider.username))",message="spec.forProvider.username is a required parameter"
 	Spec   AccountVsphereSpec   `json:"spec"`
 	Status AccountVsphereStatus `json:"status,omitempty"`

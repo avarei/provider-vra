@@ -36,11 +36,6 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.ProjectName != nil {
-		in, out := &in.ProjectName, &out.ProjectName
-		*out = new(string)
-		**out = **in
-	}
 	if in.Repository != nil {
 		in, out := &in.Repository, &out.Repository
 		*out = new(string)
@@ -123,11 +118,6 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.Path != nil {
 		in, out := &in.Path, &out.Path
-		*out = new(string)
-		**out = **in
-	}
-	if in.ProjectName != nil {
-		in, out := &in.ProjectName, &out.ProjectName
 		*out = new(string)
 		**out = **in
 	}

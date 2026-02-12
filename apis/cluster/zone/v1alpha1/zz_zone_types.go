@@ -111,7 +111,7 @@ type ZoneInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-	// The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+	// The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
 	PlacementPolicy *string `json:"placementPolicy,omitempty" tf:"placement_policy,omitempty"`
 
 	// The id of the region for which this zone is created.
@@ -175,7 +175,7 @@ type ZoneObservation struct {
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
 	// The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-	// The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+	// The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
 	PlacementPolicy *string `json:"placementPolicy,omitempty" tf:"placement_policy,omitempty"`
 
 	// The id of the region for which this zone is created.
@@ -223,7 +223,7 @@ type ZoneParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// The placement policy for the zone. One of DEFAULT, BINPACK, SPREAD or SPREAD_MEMORY. Default is DEFAULT.
-	// The placement policy for the zone. One of DEFAULT, SPREAD or BINPACK.
+	// The placement policy for the zone. One of [DEFAULT BINPACK SPREAD SPREAD_MEMORY].
 	// +kubebuilder:validation:Optional
 	PlacementPolicy *string `json:"placementPolicy,omitempty" tf:"placement_policy,omitempty"`
 

@@ -60,39 +60,52 @@ spec:
               forProvider:
                 properties:
                   config:
-                    description: Content source custom configuration.
+                    description: |-
+                      Content source custom configuration.
+                      The content source custom configuration.
                     items:
                       properties:
                         branch:
-                          description: Content source branch name.
+                          description: |-
+                            Content source branch name.
+                            The content source branch name.
                           type: string
                         contentType:
-                          description: Content source type.
+                          description: |-
+                            Content source type.
+                            The content source type.
                           type: string
                         integrationId:
-                          description: Content source integration id as seen integrations.
+                          description: |-
+                            Content source integration id as seen integrations.
+                            The content source integration id as seen integrations.
                           type: string
                         path:
-                          description: Path to refer to in the content source repository
-                            and branch.
-                          type: string
-                        projectName:
-                          description: Name of the project.
+                          description: |-
+                            Path to refer to in the content source repository and branch.
+                            Path to refer to in the content source repository and branch.
                           type: string
                         repository:
-                          description: Content source repository.
+                          description: |-
+                            Content source repository.
+                            The content source repository.
                           type: string
                       type: object
                     type: array
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description for the catalog source instance.
                     type: string
                   name:
-                    description: A human-friendly name for content source used as
-                      an identifier in APIs that support this option.
+                    description: |-
+                      A human-friendly name for content source used as an identifier in APIs that support this option.
+                      The name of the content source instance.
                     type: string
                   projectId:
-                    description: The id of the project this entity belongs to.
+                    description: |-
+                      The id of the project this entity belongs to.
+                      The id of the project this entity belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -175,12 +188,14 @@ spec:
                         type: object
                     type: object
                   syncEnabled:
-                    description: Flag indicating whether sync is enabled for this
-                      content source.
+                    description: |-
+                      Flag indicating whether sync is enabled for this content source.
+                      Wether or not sync is enabled for this content source.
                     type: boolean
                   typeId:
-                    description: Content Source type. Supported values are com.gitlab,
-                      com.github, com.vmware.marketplace, org.bitbucket.
+                    description: |-
+                      Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+                      The type of this content source.
                     type: string
                 type: object
               initProvider:
@@ -197,39 +212,52 @@ spec:
                   autoscaler.
                 properties:
                   config:
-                    description: Content source custom configuration.
+                    description: |-
+                      Content source custom configuration.
+                      The content source custom configuration.
                     items:
                       properties:
                         branch:
-                          description: Content source branch name.
+                          description: |-
+                            Content source branch name.
+                            The content source branch name.
                           type: string
                         contentType:
-                          description: Content source type.
+                          description: |-
+                            Content source type.
+                            The content source type.
                           type: string
                         integrationId:
-                          description: Content source integration id as seen integrations.
+                          description: |-
+                            Content source integration id as seen integrations.
+                            The content source integration id as seen integrations.
                           type: string
                         path:
-                          description: Path to refer to in the content source repository
-                            and branch.
-                          type: string
-                        projectName:
-                          description: Name of the project.
+                          description: |-
+                            Path to refer to in the content source repository and branch.
+                            Path to refer to in the content source repository and branch.
                           type: string
                         repository:
-                          description: Content source repository.
+                          description: |-
+                            Content source repository.
+                            The content source repository.
                           type: string
                       type: object
                     type: array
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description for the catalog source instance.
                     type: string
                   name:
-                    description: A human-friendly name for content source used as
-                      an identifier in APIs that support this option.
+                    description: |-
+                      A human-friendly name for content source used as an identifier in APIs that support this option.
+                      The name of the content source instance.
                     type: string
                   projectId:
-                    description: The id of the project this entity belongs to.
+                    description: |-
+                      The id of the project this entity belongs to.
+                      The id of the project this entity belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -312,12 +340,14 @@ spec:
                         type: object
                     type: object
                   syncEnabled:
-                    description: Flag indicating whether sync is enabled for this
-                      content source.
+                    description: |-
+                      Flag indicating whether sync is enabled for this content source.
+                      Wether or not sync is enabled for this content source.
                     type: boolean
                   typeId:
-                    description: Content Source type. Supported values are com.gitlab,
-                      com.github, com.vmware.marketplace, org.bitbucket.
+                    description: |-
+                      Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+                      The type of this content source.
                     type: string
                 type: object
               managementPolicies:
@@ -401,67 +431,95 @@ spec:
               atProvider:
                 properties:
                   config:
-                    description: Content source custom configuration.
+                    description: |-
+                      Content source custom configuration.
+                      The content source custom configuration.
                     items:
                       properties:
                         branch:
-                          description: Content source branch name.
+                          description: |-
+                            Content source branch name.
+                            The content source branch name.
                           type: string
                         contentType:
-                          description: Content source type.
+                          description: |-
+                            Content source type.
+                            The content source type.
                           type: string
                         integrationId:
-                          description: Content source integration id as seen integrations.
+                          description: |-
+                            Content source integration id as seen integrations.
+                            The content source integration id as seen integrations.
                           type: string
                         path:
-                          description: Path to refer to in the content source repository
-                            and branch.
+                          description: |-
+                            Path to refer to in the content source repository and branch.
+                            Path to refer to in the content source repository and branch.
                           type: string
                         projectName:
-                          description: Name of the project.
+                          description: |-
+                            Name of the project.
+                            The name of the project.
                           type: string
                         repository:
-                          description: Content source repository.
+                          description: |-
+                            Content source repository.
+                            The content source repository.
                           type: string
                       type: object
                     type: array
                   createdAt:
-                    description: Date when the entity was created. The date is in
-                      ISO 6801 and UTC.
+                    description: |-
+                      Date when the entity was created. The date is in ISO 6801 and UTC.
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
                     type: string
                   createdBy:
-                    description: The user the entity was created by.
+                    description: |-
+                      The user the entity was created by.
+                      The user the entity was created by.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description for the catalog source instance.
                     type: string
                   id:
                     description: The id of this cloud template.
                     type: string
                   lastUpdatedAt:
-                    description: Date when the entity was last updated. The date is
-                      in ISO 6801 and UTC.
+                    description: |-
+                      Date when the entity was last updated. The date is in ISO 6801 and UTC.
+                      Date when the entity was last updated. The date is ISO 8601 and UTC.
                     type: string
                   lastUpdatedBy:
-                    description: The user the entity was last updated by.
+                    description: |-
+                      The user the entity was last updated by.
+                      The user the entity was last updated by.
                     type: string
                   name:
-                    description: A human-friendly name for content source used as
-                      an identifier in APIs that support this option.
+                    description: |-
+                      A human-friendly name for content source used as an identifier in APIs that support this option.
+                      The name of the content source instance.
                     type: string
                   orgId:
-                    description: The id of the organization this entity belongs to.
+                    description: |-
+                      The id of the organization this entity belongs to.
+                      The id of the organization this entity belongs to.
                     type: string
                   projectId:
-                    description: The id of the project this entity belongs to.
+                    description: |-
+                      The id of the project this entity belongs to.
+                      The id of the project this entity belongs to.
                     type: string
                   syncEnabled:
-                    description: Flag indicating whether sync is enabled for this
-                      content source.
+                    description: |-
+                      Flag indicating whether sync is enabled for this content source.
+                      Wether or not sync is enabled for this content source.
                     type: boolean
                   typeId:
-                    description: Content Source type. Supported values are com.gitlab,
-                      com.github, com.vmware.marketplace, org.bitbucket.
+                    description: |-
+                      Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+                      The type of this content source.
                     type: string
                 type: object
               conditions:

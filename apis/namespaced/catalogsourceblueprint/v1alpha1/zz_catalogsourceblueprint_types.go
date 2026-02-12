@@ -16,17 +16,16 @@ import (
 
 type CatalogSourceBlueprintInitParameters struct {
 
-	// Custom configuration of the catalog source as a map of key values.
-	// +mapType=granular
-	Config map[string]*string `json:"config,omitempty" tf:"config,omitempty"`
-
 	// Human-friendly description.
+	// A human-friendly description for the blueprint content source instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Human-friendly name used as an identifier in APIs that support this option.
+	// The name of the blueprint content source instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// ID of the project this entity belongs to.
+	// The id of the project the blueprint content source instance belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -42,69 +41,88 @@ type CatalogSourceBlueprintInitParameters struct {
 type CatalogSourceBlueprintObservation struct {
 
 	// Custom configuration of the catalog source as a map of key values.
+	// The content source custom configuration.
 	// +mapType=granular
 	Config map[string]*string `json:"config,omitempty" tf:"config,omitempty"`
 
 	// Date when entity was created. Date and time format is ISO 8601 and UTC.
+	// Date when the entity was created. The date is in ISO 8601 and UTC.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// User who created the entity.
+	// The user the entity was created by.
 	CreatedBy *string `json:"createdBy,omitempty" tf:"created_by,omitempty"`
 
 	// Human-friendly description.
+	// A human-friendly description for the blueprint content source instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Flag indicating that all items can be requested across all projects.
+	// Global flag indicating that all the items can be requested across all projects.
 	Global *bool `json:"global,omitempty" tf:"global,omitempty"`
 
 	// ID of catalog source.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// ID of catalog source.
+	// Default Icon Identifier.
+	IconID *string `json:"iconId,omitempty" tf:"icon_id,omitempty"`
+
 	// Number of items found in the catalog source.
-	ItemsFound *string `json:"itemsFound,omitempty" tf:"items_found,omitempty"`
+	// Number of items found.
+	ItemsFound *float64 `json:"itemsFound,omitempty" tf:"items_found,omitempty"`
 
 	// Number of items imported from the catalog source.
-	ItemsImported *string `json:"itemsImported,omitempty" tf:"items_imported,omitempty"`
+	// Number of items imported.
+	ItemsImported *float64 `json:"itemsImported,omitempty" tf:"items_imported,omitempty"`
 
 	// Time at which the last import completed.
+	// Date when the last import was completed. The date is in ISO 8601 and UTC.
 	LastImportCompletedAt *string `json:"lastImportCompletedAt,omitempty" tf:"last_import_completed_at,omitempty"`
 
 	// List of errors seen when the catalog source was last imported.
+	// A list of errors seen at last time the content source is imported.
 	// +listType=set
 	LastImportErrors []*string `json:"lastImportErrors,omitempty" tf:"last_import_errors,omitempty"`
 
 	// Time at which the last import started.
+	// Date when the last import was started. The date is in ISO 8601 and UTC.
 	LastImportStartedAt *string `json:"lastImportStartedAt,omitempty" tf:"last_import_started_at,omitempty"`
 
+	// Date when the entity was last updated. The date is ISO 8601 and UTC.
+	LastUpdatedAt *string `json:"lastUpdatedAt,omitempty" tf:"last_updated_at,omitempty"`
+
 	// User who last updated the catalog source.
+	// The user the entity was last updated by.
 	LastUpdatedBy *string `json:"lastUpdatedBy,omitempty" tf:"last_updated_by,omitempty"`
 
 	// Human-friendly name used as an identifier in APIs that support this option.
+	// The name of the blueprint content source instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// ID of the project this entity belongs to.
+	// The id of the project the blueprint content source instance belongs to.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Type of catalog source. Example: blueprint, CFT, etc.
+	// The type of this content source.
 	TypeID *string `json:"typeId,omitempty" tf:"type_id,omitempty"`
 }
 
 type CatalogSourceBlueprintParameters struct {
 
-	// Custom configuration of the catalog source as a map of key values.
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	Config map[string]*string `json:"config,omitempty" tf:"config,omitempty"`
-
 	// Human-friendly description.
+	// A human-friendly description for the blueprint content source instance.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Human-friendly name used as an identifier in APIs that support this option.
+	// The name of the blueprint content source instance.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// ID of the project this entity belongs to.
+	// The id of the project the blueprint content source instance belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`

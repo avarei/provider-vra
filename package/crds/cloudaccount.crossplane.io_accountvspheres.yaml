@@ -96,6 +96,24 @@ spec:
                       Human-friendly description.
                       A human-friendly description.
                     type: string
+                  enabledRegions:
+                    description: |-
+                      A set of region names that are enabled for the cloud account.
+                      The set of regions that will be enabled for this cloud account.
+                    items:
+                      properties:
+                        externalRegionId:
+                          description: |-
+                            ID of the vSphere cloud account.
+                            Unique identifier of the region on the provider side.
+                          type: string
+                        name:
+                          description: |-
+                            Name of the vSphere cloud account.
+                            Name of the region on the provider side.
+                          type: string
+                      type: object
+                    type: array
                   hostname:
                     description: |-
                       IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.
@@ -187,6 +205,24 @@ spec:
                       Human-friendly description.
                       A human-friendly description.
                     type: string
+                  enabledRegions:
+                    description: |-
+                      A set of region names that are enabled for the cloud account.
+                      The set of regions that will be enabled for this cloud account.
+                    items:
+                      properties:
+                        externalRegionId:
+                          description: |-
+                            ID of the vSphere cloud account.
+                            Unique identifier of the region on the provider side.
+                          type: string
+                        name:
+                          description: |-
+                            Name of the vSphere cloud account.
+                            Name of the region on the provider side.
+                          type: string
+                      type: object
+                    type: array
                   hostname:
                     description: |-
                       IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.
@@ -342,10 +378,6 @@ spec:
             - message: spec.forProvider.passwordSecretRef is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.passwordSecretRef)'
-            - message: spec.forProvider.regions is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.regions)
-                || (has(self.initProvider) && has(self.initProvider.regions))'
             - message: spec.forProvider.username is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.username)
@@ -383,6 +415,29 @@ spec:
                       Human-friendly description.
                       A human-friendly description.
                     type: string
+                  enabledRegions:
+                    description: |-
+                      A set of region names that are enabled for the cloud account.
+                      The set of regions that will be enabled for this cloud account.
+                    items:
+                      properties:
+                        externalRegionId:
+                          description: |-
+                            ID of the vSphere cloud account.
+                            Unique identifier of the region on the provider side.
+                          type: string
+                        id:
+                          description: |-
+                            ID of the vSphere cloud account.
+                            Unique identifier of the region.
+                          type: string
+                        name:
+                          description: |-
+                            Name of the vSphere cloud account.
+                            Name of the region on the provider side.
+                          type: string
+                      type: object
+                    type: array
                   hostname:
                     description: |-
                       IP address or FQDN of the vCenter Server. The cloud proxy belongs on this vCenter.

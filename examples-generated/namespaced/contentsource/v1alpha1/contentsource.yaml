@@ -14,7 +14,6 @@ spec:
       contentType: BLUEPRINT
       integrationId: ${var.integration_id}
       path: blueprint01
-      projectName: ${var.project_name}
       repository: vracontent/vra8_content_source_test
     description: Some content Source
     name: ${var.content_source_name}

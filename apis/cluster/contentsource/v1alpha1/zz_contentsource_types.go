@@ -16,83 +16,96 @@ import (
 type ConfigInitParameters struct {
 
 	// Content source branch name.
+	// The content source branch name.
 	Branch *string `json:"branch,omitempty" tf:"branch,omitempty"`
 
 	// Content source type.
+	// The content source type.
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
 
 	// Content source integration id as seen integrations.
+	// The content source integration id as seen integrations.
 	IntegrationID *string `json:"integrationId,omitempty" tf:"integration_id,omitempty"`
 
 	// Path to refer to in the content source repository and branch.
+	// Path to refer to in the content source repository and branch.
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
-	// Name of the project.
-	ProjectName *string `json:"projectName,omitempty" tf:"project_name,omitempty"`
-
 	// Content source repository.
+	// The content source repository.
 	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
 }
 
 type ConfigObservation struct {
 
 	// Content source branch name.
+	// The content source branch name.
 	Branch *string `json:"branch,omitempty" tf:"branch,omitempty"`
 
 	// Content source type.
+	// The content source type.
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
 
 	// Content source integration id as seen integrations.
+	// The content source integration id as seen integrations.
 	IntegrationID *string `json:"integrationId,omitempty" tf:"integration_id,omitempty"`
 
+	// Path to refer to in the content source repository and branch.
 	// Path to refer to in the content source repository and branch.
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Name of the project.
+	// The name of the project.
 	ProjectName *string `json:"projectName,omitempty" tf:"project_name,omitempty"`
 
 	// Content source repository.
+	// The content source repository.
 	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
 }
 
 type ConfigParameters struct {
 
 	// Content source branch name.
+	// The content source branch name.
 	// +kubebuilder:validation:Optional
-	Branch *string `json:"branch,omitempty" tf:"branch,omitempty"`
+	Branch *string `json:"branch" tf:"branch,omitempty"`
 
 	// Content source type.
+	// The content source type.
 	// +kubebuilder:validation:Optional
-	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
+	ContentType *string `json:"contentType" tf:"content_type,omitempty"`
 
 	// Content source integration id as seen integrations.
+	// The content source integration id as seen integrations.
 	// +kubebuilder:validation:Optional
 	IntegrationID *string `json:"integrationId" tf:"integration_id,omitempty"`
 
 	// Path to refer to in the content source repository and branch.
+	// Path to refer to in the content source repository and branch.
 	// +kubebuilder:validation:Optional
-	Path *string `json:"path" tf:"path,omitempty"`
-
-	// Name of the project.
-	// +kubebuilder:validation:Optional
-	ProjectName *string `json:"projectName" tf:"project_name,omitempty"`
+	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Content source repository.
+	// The content source repository.
 	// +kubebuilder:validation:Optional
-	Repository *string `json:"repository,omitempty" tf:"repository,omitempty"`
+	Repository *string `json:"repository" tf:"repository,omitempty"`
 }
 
 type ContentSourceInitParameters struct {
 
 	// Content source custom configuration.
+	// The content source custom configuration.
 	Config []ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// A human-friendly description.
+	// A human-friendly description for the catalog source instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A human-friendly name for content source used as an identifier in APIs that support this option.
+	// The name of the content source instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the project this entity belongs to.
 	// The id of the project this entity belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -106,65 +119,82 @@ type ContentSourceInitParameters struct {
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Flag indicating whether sync is enabled for this content source.
+	// Wether or not sync is enabled for this content source.
 	SyncEnabled *bool `json:"syncEnabled,omitempty" tf:"sync_enabled,omitempty"`
 
 	// Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+	// The type of this content source.
 	TypeID *string `json:"typeId,omitempty" tf:"type_id,omitempty"`
 }
 
 type ContentSourceObservation struct {
 
 	// Content source custom configuration.
+	// The content source custom configuration.
 	Config []ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
 
 	// Date when the entity was created. The date is in ISO 6801 and UTC.
+	// Date when the entity was created. The date is in ISO 8601 and UTC.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// The user the entity was created by.
 	// The user the entity was created by.
 	CreatedBy *string `json:"createdBy,omitempty" tf:"created_by,omitempty"`
 
 	// A human-friendly description.
+	// A human-friendly description for the catalog source instance.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// The id of this cloud template.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Date when the entity was last updated. The date is in ISO 6801 and UTC.
+	// Date when the entity was last updated. The date is ISO 8601 and UTC.
 	LastUpdatedAt *string `json:"lastUpdatedAt,omitempty" tf:"last_updated_at,omitempty"`
 
+	// The user the entity was last updated by.
 	// The user the entity was last updated by.
 	LastUpdatedBy *string `json:"lastUpdatedBy,omitempty" tf:"last_updated_by,omitempty"`
 
 	// A human-friendly name for content source used as an identifier in APIs that support this option.
+	// The name of the content source instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the organization this entity belongs to.
 	// The id of the organization this entity belongs to.
 	OrgID *string `json:"orgId,omitempty" tf:"org_id,omitempty"`
 
 	// The id of the project this entity belongs to.
+	// The id of the project this entity belongs to.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// Flag indicating whether sync is enabled for this content source.
+	// Wether or not sync is enabled for this content source.
 	SyncEnabled *bool `json:"syncEnabled,omitempty" tf:"sync_enabled,omitempty"`
 
 	// Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+	// The type of this content source.
 	TypeID *string `json:"typeId,omitempty" tf:"type_id,omitempty"`
 }
 
 type ContentSourceParameters struct {
 
 	// Content source custom configuration.
+	// The content source custom configuration.
 	// +kubebuilder:validation:Optional
 	Config []ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// A human-friendly description.
+	// A human-friendly description for the catalog source instance.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A human-friendly name for content source used as an identifier in APIs that support this option.
+	// The name of the content source instance.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the project this entity belongs to.
 	// The id of the project this entity belongs to.
 	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1.Project
 	// +kubebuilder:validation:Optional
@@ -179,10 +209,12 @@ type ContentSourceParameters struct {
 	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Flag indicating whether sync is enabled for this content source.
+	// Wether or not sync is enabled for this content source.
 	// +kubebuilder:validation:Optional
 	SyncEnabled *bool `json:"syncEnabled,omitempty" tf:"sync_enabled,omitempty"`
 
 	// Content Source type. Supported values are com.gitlab, com.github, com.vmware.marketplace, org.bitbucket.
+	// The type of this content source.
 	// +kubebuilder:validation:Optional
 	TypeID *string `json:"typeId,omitempty" tf:"type_id,omitempty"`
 }
