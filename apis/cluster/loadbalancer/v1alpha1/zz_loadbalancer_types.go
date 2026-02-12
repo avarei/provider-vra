@@ -426,7 +426,18 @@ type TagsParameters struct {
 }
 
 type TargetsInitParameters struct {
+
+	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/machine/v1alpha1.Machine
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	MachineID *string `json:"machineId,omitempty" tf:"machine_id,omitempty"`
+
+	// Reference to a Machine in machine to populate machineId.
+	// +kubebuilder:validation:Optional
+	MachineIDRef *v1.Reference `json:"machineIdRef,omitempty" tf:"-"`
+
+	// Selector for a Machine in machine to populate machineId.
+	// +kubebuilder:validation:Optional
+	MachineIDSelector *v1.Selector `json:"machineIdSelector,omitempty" tf:"-"`
 
 	NetworkInterfaceID *string `json:"networkInterfaceId,omitempty" tf:"network_interface_id,omitempty"`
 }
@@ -439,8 +450,18 @@ type TargetsObservation struct {
 
 type TargetsParameters struct {
 
+	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/machine/v1alpha1.Machine
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
-	MachineID *string `json:"machineId" tf:"machine_id,omitempty"`
+	MachineID *string `json:"machineId,omitempty" tf:"machine_id,omitempty"`
+
+	// Reference to a Machine in machine to populate machineId.
+	// +kubebuilder:validation:Optional
+	MachineIDRef *v1.Reference `json:"machineIdRef,omitempty" tf:"-"`
+
+	// Selector for a Machine in machine to populate machineId.
+	// +kubebuilder:validation:Optional
+	MachineIDSelector *v1.Selector `json:"machineIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	NetworkInterfaceID *string `json:"networkInterfaceId,omitempty" tf:"network_interface_id,omitempty"`

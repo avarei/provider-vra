@@ -74,7 +74,17 @@ type DisksInitParameters struct {
 
 	// ID of existing block device.
 	// The id of the existing block device.
+	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/blockdevice/v1alpha1.BlockDevice
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	BlockDeviceID *string `json:"blockDeviceId,omitempty" tf:"block_device_id,omitempty"`
+
+	// Reference to a BlockDevice in blockdevice to populate blockDeviceId.
+	// +kubebuilder:validation:Optional
+	BlockDeviceIDRef *v1.Reference `json:"blockDeviceIdRef,omitempty" tf:"-"`
+
+	// Selector for a BlockDevice in blockdevice to populate blockDeviceId.
+	// +kubebuilder:validation:Optional
+	BlockDeviceIDSelector *v1.Selector `json:"blockDeviceIdSelector,omitempty" tf:"-"`
 
 	// Human-friendly description.
 	// A human-friendly description.
@@ -144,8 +154,18 @@ type DisksParameters struct {
 
 	// ID of existing block device.
 	// The id of the existing block device.
+	// +crossplane:generate:reference:type=github.com/avarei/provider-vra/v2/apis/cluster/blockdevice/v1alpha1.BlockDevice
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractResourceID()
 	// +kubebuilder:validation:Optional
-	BlockDeviceID *string `json:"blockDeviceId" tf:"block_device_id,omitempty"`
+	BlockDeviceID *string `json:"blockDeviceId,omitempty" tf:"block_device_id,omitempty"`
+
+	// Reference to a BlockDevice in blockdevice to populate blockDeviceId.
+	// +kubebuilder:validation:Optional
+	BlockDeviceIDRef *v1.Reference `json:"blockDeviceIdRef,omitempty" tf:"-"`
+
+	// Selector for a BlockDevice in blockdevice to populate blockDeviceId.
+	// +kubebuilder:validation:Optional
+	BlockDeviceIDSelector *v1.Selector `json:"blockDeviceIdSelector,omitempty" tf:"-"`
 
 	// Human-friendly description.
 	// A human-friendly description.

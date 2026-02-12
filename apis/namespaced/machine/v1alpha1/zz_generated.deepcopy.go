@@ -156,6 +156,16 @@ func (in *DisksInitParameters) DeepCopyInto(out *DisksInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BlockDeviceIDRef != nil {
+		in, out := &in.BlockDeviceIDRef, &out.BlockDeviceIDRef
+		*out = new(v1.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BlockDeviceIDSelector != nil {
+		in, out := &in.BlockDeviceIDSelector, &out.BlockDeviceIDSelector
+		*out = new(v1.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
@@ -305,6 +315,16 @@ func (in *DisksParameters) DeepCopyInto(out *DisksParameters) {
 		in, out := &in.BlockDeviceID, &out.BlockDeviceID
 		*out = new(string)
 		**out = **in
+	}
+	if in.BlockDeviceIDRef != nil {
+		in, out := &in.BlockDeviceIDRef, &out.BlockDeviceIDRef
+		*out = new(v1.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BlockDeviceIDSelector != nil {
+		in, out := &in.BlockDeviceIDSelector, &out.BlockDeviceIDSelector
+		*out = new(v1.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description

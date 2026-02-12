@@ -32,4 +32,6 @@ spec:
       port: "80"
       protocol: TCP
     targets:
-    - machineId: ${vra_machine.my_machine.id}
+    - machineIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: my_machine

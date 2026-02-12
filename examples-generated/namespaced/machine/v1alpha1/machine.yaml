@@ -27,8 +27,12 @@ spec:
       mandatory: true
     description: terraform test machine
     disks:
-    - blockDeviceId: ${vra_block_device.disk1.id}
-    - blockDeviceId: ${vra_block_device.disk2.id}
+    - blockDeviceIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: disk1
+    - blockDeviceIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: disk2
     flavor: medium
     image: ubuntu2
     name: tf-machine

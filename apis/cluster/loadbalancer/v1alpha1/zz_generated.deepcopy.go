@@ -1075,6 +1075,16 @@ func (in *TargetsInitParameters) DeepCopyInto(out *TargetsInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.MachineIDRef != nil {
+		in, out := &in.MachineIDRef, &out.MachineIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MachineIDSelector != nil {
+		in, out := &in.MachineIDSelector, &out.MachineIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.NetworkInterfaceID != nil {
 		in, out := &in.NetworkInterfaceID, &out.NetworkInterfaceID
 		*out = new(string)
@@ -1124,6 +1134,16 @@ func (in *TargetsParameters) DeepCopyInto(out *TargetsParameters) {
 		in, out := &in.MachineID, &out.MachineID
 		*out = new(string)
 		**out = **in
+	}
+	if in.MachineIDRef != nil {
+		in, out := &in.MachineIDRef, &out.MachineIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.MachineIDSelector != nil {
+		in, out := &in.MachineIDSelector, &out.MachineIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.NetworkInterfaceID != nil {
 		in, out := &in.NetworkInterfaceID, &out.NetworkInterfaceID

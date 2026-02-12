@@ -7,8 +7,10 @@ package v1alpha1
 
 import (
 	"context"
+	v1alpha11 "github.com/avarei/provider-vra/v2/apis/cluster/machine/v1alpha1"
 	v1alpha1 "github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1"
 	reference "github.com/crossplane/crossplane-runtime/v2/pkg/reference"
+	resource "github.com/crossplane/upjet/v2/pkg/resource"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -37,6 +39,25 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.Targets); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Targets[i3].MachineID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Targets[i3].MachineIDRef,
+			Selector:     mg.Spec.ForProvider.Targets[i3].MachineIDSelector,
+			To: reference.To{
+				List:    &v1alpha11.MachineList{},
+				Managed: &v1alpha11.Machine{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Targets[i3].MachineID")
+		}
+		mg.Spec.ForProvider.Targets[i3].MachineID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Targets[i3].MachineIDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
 		Extract:      reference.ExternalName(),
@@ -53,6 +74,26 @@ func (mg *LoadBalancer) ResolveReferences(ctx context.Context, c client.Reader) 
 	}
 	mg.Spec.InitProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.ProjectIDRef = rsp.ResolvedReference
+
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.Targets); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Targets[i3].MachineID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Targets[i3].MachineIDRef,
+			Selector:     mg.Spec.InitProvider.Targets[i3].MachineIDSelector,
+			To: reference.To{
+				List:    &v1alpha11.MachineList{},
+				Managed: &v1alpha11.Machine{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Targets[i3].MachineID")
+		}
+		mg.Spec.InitProvider.Targets[i3].MachineID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Targets[i3].MachineIDRef = rsp.ResolvedReference
+
+	}
 
 	return nil
 }

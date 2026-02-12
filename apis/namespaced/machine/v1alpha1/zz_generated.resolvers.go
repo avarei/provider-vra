@@ -7,8 +7,10 @@ package v1alpha1
 
 import (
 	"context"
-	v1alpha1 "github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1"
+	v1alpha11 "github.com/avarei/provider-vra/v2/apis/cluster/project/v1alpha1"
+	v1alpha1 "github.com/avarei/provider-vra/v2/apis/namespaced/blockdevice/v1alpha1"
 	reference "github.com/crossplane/crossplane-runtime/v2/pkg/reference"
+	resource "github.com/crossplane/upjet/v2/pkg/resource"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -20,6 +22,25 @@ func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error
 	var rsp reference.NamespacedResolutionResponse
 	var err error
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.Disks); i3++ {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Disks[i3].BlockDeviceID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Disks[i3].BlockDeviceIDRef,
+			Selector:     mg.Spec.ForProvider.Disks[i3].BlockDeviceIDSelector,
+			To: reference.To{
+				List:    &v1alpha1.BlockDeviceList{},
+				Managed: &v1alpha1.BlockDevice{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Disks[i3].BlockDeviceID")
+		}
+		mg.Spec.ForProvider.Disks[i3].BlockDeviceID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Disks[i3].BlockDeviceIDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
 		Extract:      reference.ExternalName(),
@@ -27,8 +48,8 @@ func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.ProjectList{},
-			Managed: &v1alpha1.Project{},
+			List:    &v1alpha11.ProjectList{},
+			Managed: &v1alpha11.Project{},
 		},
 	})
 	if err != nil {
@@ -37,6 +58,25 @@ func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error
 	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.Disks); i3++ {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Disks[i3].BlockDeviceID),
+			Extract:      resource.ExtractResourceID(),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Disks[i3].BlockDeviceIDRef,
+			Selector:     mg.Spec.InitProvider.Disks[i3].BlockDeviceIDSelector,
+			To: reference.To{
+				List:    &v1alpha1.BlockDeviceList{},
+				Managed: &v1alpha1.BlockDevice{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Disks[i3].BlockDeviceID")
+		}
+		mg.Spec.InitProvider.Disks[i3].BlockDeviceID = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Disks[i3].BlockDeviceIDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
 		Extract:      reference.ExternalName(),
@@ -44,8 +84,8 @@ func (mg *Machine) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.InitProvider.ProjectIDRef,
 		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.ProjectList{},
-			Managed: &v1alpha1.Project{},
+			List:    &v1alpha11.ProjectList{},
+			Managed: &v1alpha11.Project{},
 		},
 	})
 	if err != nil {

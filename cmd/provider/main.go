@@ -60,10 +60,6 @@ func main() {
 
 		enableManagementPolicies = app.Flag("enable-management-policies", "Enable support for Management Policies.").Default("true").Envar("ENABLE_MANAGEMENT_POLICIES").Bool()
 		enableChangeLogs         = app.Flag("enable-changelogs", "Enable support for capturing change logs during reconciliation.").Default("false").Envar("ENABLE_CHANGE_LOGS").Bool()
-
-		terraformVersion = app.Flag("terraform-version", "Terraform version.").Required().Envar("TERRAFORM_VERSION").String()
-		providerSource   = app.Flag("terraform-provider-source", "Terraform provider source.").Required().Envar("TERRAFORM_PROVIDER_SOURCE").String()
-		providerVersion  = app.Flag("terraform-provider-version", "Terraform provider version.").Required().Envar("TERRAFORM_PROVIDER_VERSION").String()
 	)
 
 	kingpin.MustParse(app.Parse(os.Args[1:]))
@@ -110,6 +106,12 @@ func main() {
 	metrics.Registry.MustRegister(stateMetrics)
 
 	kingpin.FatalIfError(err, "Cannot initialize the provider configuration")
+
+	providerCluster := config.GetProvider()
+	kingpin.FatalIfError(err, "Cannot initialize the cluster provider configuration")
+	providerNamespaced := config.GetProviderNamespaced()
+	kingpin.FatalIfError(err, "Cannot initialize the namespaced provider configuration")
+
 	featureFlags := &feature.Flags{}
 
 	clusterOpts := tjcontroller.Options{
@@ -125,8 +127,8 @@ func main() {
 				MRStateMetrics:          stateMetrics,
 			},
 		},
-		Provider:              config.GetProvider(),
-		SetupFn:               clients.TerraformSetupBuilder(*terraformVersion, *providerSource, *providerVersion),
+		Provider:              providerCluster,
+		SetupFn:               clients.TerraformSetupBuilder(providerCluster.TerraformProvider),
 		PollJitter:            pollJitter,
 		OperationTrackerStore: tjcontroller.NewOperationStore(log),
 	}
@@ -144,8 +146,8 @@ func main() {
 				MRStateMetrics:          stateMetrics,
 			},
 		},
-		Provider:              config.GetProviderNamespaced(),
-		SetupFn:               clients.TerraformSetupBuilder(*terraformVersion, *providerSource, *providerVersion),
+		Provider:              providerNamespaced,
+		SetupFn:               clients.TerraformSetupBuilder(providerNamespaced.TerraformProvider),
 		PollJitter:            pollJitter,
 		OperationTrackerStore: tjcontroller.NewOperationStore(log),
 	}

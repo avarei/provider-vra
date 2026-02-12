@@ -23,5 +23,14 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("cannot calculate the absolute path with %s", rootDir))
 	}
-	pipeline.Run(config.GetProvider(), config.GetProviderNamespaced(), absRootDir)
+	pc := config.GetProvider()
+	if err != nil {
+		panic(fmt.Sprintf("cannot get cluster provider configuration: %v", err))
+	}
+	pns := config.GetProviderNamespaced()
+	if err != nil {
+		panic(fmt.Sprintf("cannot get namespaced provider configuration: %v", err))
+	}
+
+	pipeline.Run(pc, pns, absRootDir)
 }
