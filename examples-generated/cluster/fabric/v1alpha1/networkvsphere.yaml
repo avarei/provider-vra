@@ -1,0 +1,16 @@
+apiVersion: fabric.crossplane.io/v1alpha1
+kind: NetworkVsphere
+metadata:
+  annotations:
+    meta.upbound.io/example-id: fabric/v1alpha1/networkvsphere
+  labels:
+    testing.upbound.io/example-name: simple
+  name: simple
+spec:
+  forProvider:
+    cidr: ${var.cidr}
+    defaultGateway: ${var.gateway}
+    domain: ${var.domain}
+    tags:
+    - key: foo
+      value: bar

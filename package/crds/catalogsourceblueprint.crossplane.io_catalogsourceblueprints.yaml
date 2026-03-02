@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: catalogsourceblueprints.catalogsourceblueprint.crossplane.io
 spec:
   group: catalogsourceblueprint.crossplane.io
@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: CatalogSourceBlueprint is the Schema for the CatalogSourceBlueprints
-          API. <no value>
+          API. A resource that can be used to create a catalog source of type cloud
+          template (blueprint).
         properties:
           apiVersion:
             description: |-
@@ -73,16 +74,20 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  config:
-                    additionalProperties:
-                      type: string
-                    type: object
-                    x-kubernetes-map-type: granular
                   description:
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description for the blueprint content source instance.
                     type: string
                   name:
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of the blueprint content source instance.
                     type: string
                   projectId:
+                    description: |-
+                      ID of the project this entity belongs to.
+                      The id of the project the blueprint content source instance belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -172,16 +177,20 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  config:
-                    additionalProperties:
-                      type: string
-                    type: object
-                    x-kubernetes-map-type: granular
                   description:
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description for the blueprint content source instance.
                     type: string
                   name:
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of the blueprint content source instance.
                     type: string
                   projectId:
+                    description: |-
+                      ID of the project this entity belongs to.
+                      The id of the project the blueprint content source instance belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -324,93 +333,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -439,38 +367,90 @@ spec:
                   config:
                     additionalProperties:
                       type: string
+                    description: |-
+                      Custom configuration of the catalog source as a map of key values.
+                      The content source custom configuration.
                     type: object
                     x-kubernetes-map-type: granular
                   createdAt:
+                    description: |-
+                      Date when entity was created. Date and time format is ISO 8601 and UTC.
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
                     type: string
                   createdBy:
+                    description: |-
+                      User who created the entity.
+                      The user the entity was created by.
                     type: string
                   description:
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description for the blueprint content source instance.
                     type: string
                   global:
+                    description: |-
+                      Flag indicating that all items can be requested across all projects.
+                      Global flag indicating that all the items can be requested across all projects.
                     type: boolean
+                  iconId:
+                    description: |-
+                      ID of catalog source.
+                      Default Icon Identifier.
+                    type: string
                   id:
+                    description: ID of catalog source.
                     type: string
                   itemsFound:
-                    type: string
+                    description: |-
+                      Number of items found in the catalog source.
+                      Number of items found.
+                    type: number
                   itemsImported:
-                    type: string
+                    description: |-
+                      Number of items imported from the catalog source.
+                      Number of items imported.
+                    type: number
                   lastImportCompletedAt:
+                    description: |-
+                      Time at which the last import completed.
+                      Date when the last import was completed. The date is in ISO 8601 and UTC.
                     type: string
                   lastImportErrors:
+                    description: |-
+                      List of errors seen when the catalog source was last imported.
+                      A list of errors seen at last time the content source is imported.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   lastImportStartedAt:
+                    description: |-
+                      Time at which the last import started.
+                      Date when the last import was started. The date is in ISO 8601 and UTC.
+                    type: string
+                  lastUpdatedAt:
+                    description: Date when the entity was last updated. The date is
+                      ISO 8601 and UTC.
                     type: string
                   lastUpdatedBy:
+                    description: |-
+                      User who last updated the catalog source.
+                      The user the entity was last updated by.
                     type: string
                   name:
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of the blueprint content source instance.
                     type: string
                   projectId:
+                    description: |-
+                      ID of the project this entity belongs to.
+                      The id of the project the blueprint content source instance belongs to.
                     type: string
                   typeId:
+                    description: |-
+                      Type of catalog source. Example: blueprint, CFT, etc.
+                      The type of this content source.
                     type: string
                 type: object
               conditions:

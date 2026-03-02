@@ -1,0 +1,22 @@
+apiVersion: storage.vra.m.crossplane.io/v1alpha1
+kind: ProfileVsphere
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/profilevsphere
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    datastoreId: ${data.vra_fabric_datastore_vsphere.this.id}
+    defaultItem: false
+    description: vSphere Storage Profile with FCD disk.
+    diskType: firstClass
+    name: vra_storage_profile_vsphere resource - FCD
+    provisioningType: thin
+    regionId: ${data.vra_region.this.id}
+    storagePolicyId: ${data.vra_fabric_storage_policy_vsphere.this.id}
+    tags:
+    - key: foo
+      value: bar

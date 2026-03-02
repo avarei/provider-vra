@@ -1,0 +1,21 @@
+apiVersion: cloudaccount.crossplane.io/v1alpha1
+kind: AccountAzure
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudaccount/v1alpha1/accountazure
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    applicationId: sample-application-id
+    applicationKeySecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    description: test cloud account
+    name: my-cloud-account-%d
+    regions:
+    - centralus
+    subscriptionId: sample-subscription-id
+    tenantId: sample-tenant-id

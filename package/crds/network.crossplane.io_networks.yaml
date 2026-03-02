@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: networks.network.crossplane.io
 spec:
   group: network.crossplane.io
@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Network is the Schema for the Networks API. <no value>
+        description: Network is the Schema for the Networks API. Provides a vra_network
+          resource.
         properties:
           apiVersion:
             description: |-
@@ -73,9 +74,9 @@ spec:
               forProvider:
                 properties:
                   constraints:
-                    description: Constraints that are used to drive placement policies
-                      for entities such as image, network, storage, etc. Constraint
-                      expressions are matched against tags on existing placement targets.
+                    description: |-
+                      List of storage, network and extensibility constraints to be applied when provisioning through this project.
+                      Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
                     items:
                       properties:
                         expression:
@@ -92,17 +93,27 @@ spec:
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the base resource.
                     type: object
                     x-kubernetes-map-type: granular
                   deploymentId:
+                    description: Deployment id that is associated with this resource.
                     type: string
                   description:
+                    description: A human-friendly description.
                     type: string
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   outboundAccess:
+                    description: Flag to indicate if the network needs to have outbound
+                      access or not. Default is true. This field will be ignored if
+                      there is proper input for networkType customProperty.
                     type: boolean
                   projectId:
+                    description: The id of the project this resource belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -179,6 +190,9 @@ spec:
                         type: object
                     type: object
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this resource. Example: [ { "key" : "ownedBy", "value":
+                      "Rainpole" } ]'
                     items:
                       properties:
                         key:
@@ -202,9 +216,9 @@ spec:
                   autoscaler.
                 properties:
                   constraints:
-                    description: Constraints that are used to drive placement policies
-                      for entities such as image, network, storage, etc. Constraint
-                      expressions are matched against tags on existing placement targets.
+                    description: |-
+                      List of storage, network and extensibility constraints to be applied when provisioning through this project.
+                      Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
                     items:
                       properties:
                         expression:
@@ -221,17 +235,27 @@ spec:
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the base resource.
                     type: object
                     x-kubernetes-map-type: granular
                   deploymentId:
+                    description: Deployment id that is associated with this resource.
                     type: string
                   description:
+                    description: A human-friendly description.
                     type: string
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   outboundAccess:
+                    description: Flag to indicate if the network needs to have outbound
+                      access or not. Default is true. This field will be ignored if
+                      there is proper input for networkType customProperty.
                     type: boolean
                   projectId:
+                    description: The id of the project this resource belongs to.
                     type: string
                   projectIdRef:
                     description: Reference to a Project in project to populate projectId.
@@ -308,6 +332,9 @@ spec:
                         type: object
                     type: object
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this resource. Example: [ { "key" : "ownedBy", "value":
+                      "Rainpole" } ]'
                     items:
                       properties:
                         key:
@@ -383,93 +410,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -495,11 +441,12 @@ spec:
               atProvider:
                 properties:
                   cidr:
+                    description: IPv4 address range of the network in CIDR format.
                     type: string
                   constraints:
-                    description: Constraints that are used to drive placement policies
-                      for entities such as image, network, storage, etc. Constraint
-                      expressions are matched against tags on existing placement targets.
+                    description: |-
+                      List of storage, network and extensibility constraints to be applied when provisioning through this project.
+                      Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
                     items:
                       properties:
                         expression:
@@ -516,19 +463,27 @@ spec:
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the base resource.
                     type: object
                     x-kubernetes-map-type: granular
                   deploymentId:
+                    description: Deployment id that is associated with this resource.
                     type: string
                   description:
+                    description: A human-friendly description.
                     type: string
                   externalId:
+                    description: External entity Id on the provider side.
                     type: string
                   externalZoneId:
+                    description: The external zoneId of the resource.
                     type: string
                   id:
                     type: string
                   links:
+                    description: Hypermedia as the Engine of Application State (HATEOAS)
+                      of the entity.
                     items:
                       properties:
                         href:
@@ -543,18 +498,30 @@ spec:
                       type: object
                     type: array
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   organizationId:
+                    description: The id of the organization this entity belongs to.
                     type: string
                   outboundAccess:
+                    description: Flag to indicate if the network needs to have outbound
+                      access or not. Default is true. This field will be ignored if
+                      there is proper input for networkType customProperty.
                     type: boolean
                   owner:
+                    description: Email of the user that owns the entity.
                     type: string
                   projectId:
+                    description: The id of the project this resource belongs to.
                     type: string
                   selfLink:
+                    description: Self link of this request.
                     type: string
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this resource. Example: [ { "key" : "ownedBy", "value":
+                      "Rainpole" } ]'
                     items:
                       properties:
                         key:

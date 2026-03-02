@@ -1,0 +1,20 @@
+apiVersion: network.crossplane.io/v1alpha1
+kind: NetworkIPRange
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/networkiprange
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    description: Internal Network IP Range Example
+    endIpAddress: ${var.end_ip}
+    fabricNetworkIds:
+    - ${data.fabric_network.subnet.id}
+    ipVersion: ${var.ip_version}
+    name: example-ip-range
+    startIpAddress: ${var.start_ip}
+    tags:
+    - key: foo
+      value: bar

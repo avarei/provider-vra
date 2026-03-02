@@ -1,0 +1,26 @@
+apiVersion: integration.crossplane.io/v1alpha1
+kind: Integration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: integration/v1alpha1/integration
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    description: SaltStack Integration
+    integrationProperties:
+      hostName: ${var.hostname}
+    integrationType: saltstack
+    name: saltstack
+    privateKeyIdSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    privateKeySecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    tags:
+    - key: created_by
+      value: vra-terraform-provider

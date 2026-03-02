@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: networkipranges.network.crossplane.io
 spec:
   group: network.crossplane.io
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: NetworkIPRange is the Schema for the NetworkIPRanges API. <no
-          value>
+        description: NetworkIPRange is the Schema for the NetworkIPRanges API. Creates
+          a network_ip_range resource.
         properties:
           apiVersion:
             description: |-
@@ -74,30 +74,47 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description.
                     type: string
                   endIpAddress:
-                    description: End IP address of the range.
+                    description: |-
+                      End IP address of the range.
+                      End IP address of the range.
                     type: string
                   fabricNetworkId:
-                    description: The Id of the fabric network.
+                    description: |-
+                      ID of the network IP range
+                      The Id of the fabric network.
                     type: string
                   fabricNetworkIds:
-                    description: The Ids of the fabric networks.
+                    description: |-
+                      The Ids of the fabric networks.
+                      The Ids of the fabric networks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   ipVersion:
-                    description: 'IP address version: IPv4 or IPv6.'
+                    description: |-
+                      IP address version: IPv4 or IPv6.
+                      IP address version: IPv4 or IPv6.
                     type: string
                   name:
-                    description: The name of the network IP range.
+                    description: |-
+                      The name of the network IP range.
+                      The name of the network IP range.
                     type: string
                   startIpAddress:
-                    description: Start IP address of the range.
+                    description: |-
+                      Start IP address of the range.
+                      Start IP address of the range.
                     type: string
                   tags:
+                    description: |-
+                      Set of tag keys and values to apply to the resource.
+                      Example: [ { "key" : "vmware", "value": "provider" } ]
                     items:
                       properties:
                         key:
@@ -121,30 +138,47 @@ spec:
                   autoscaler.
                 properties:
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description.
                     type: string
                   endIpAddress:
-                    description: End IP address of the range.
+                    description: |-
+                      End IP address of the range.
+                      End IP address of the range.
                     type: string
                   fabricNetworkId:
-                    description: The Id of the fabric network.
+                    description: |-
+                      ID of the network IP range
+                      The Id of the fabric network.
                     type: string
                   fabricNetworkIds:
-                    description: The Ids of the fabric networks.
+                    description: |-
+                      The Ids of the fabric networks.
+                      The Ids of the fabric networks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   ipVersion:
-                    description: 'IP address version: IPv4 or IPv6.'
+                    description: |-
+                      IP address version: IPv4 or IPv6.
+                      IP address version: IPv4 or IPv6.
                     type: string
                   name:
-                    description: The name of the network IP range.
+                    description: |-
+                      The name of the network IP range.
+                      The name of the network IP range.
                     type: string
                   startIpAddress:
-                    description: Start IP address of the range.
+                    description: |-
+                      Start IP address of the range.
+                      Start IP address of the range.
                     type: string
                   tags:
+                    description: |-
+                      Set of tag keys and values to apply to the resource.
+                      Example: [ { "key" : "vmware", "value": "provider" } ]
                     items:
                       properties:
                         key:
@@ -220,93 +254,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -344,33 +297,49 @@ spec:
               atProvider:
                 properties:
                   createdAt:
-                    description: Date when the entity was created. The date is in
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      A human-friendly description.
+                      A human-friendly description.
                     type: string
                   endIpAddress:
-                    description: End IP address of the range.
+                    description: |-
+                      End IP address of the range.
+                      End IP address of the range.
                     type: string
                   externalId:
-                    description: External entity Id on the provider side.
+                    description: |-
+                      External entity Id on the provider side.
+                      External entity Id on the provider side.
                     type: string
                   fabricNetworkId:
-                    description: The Id of the fabric network.
+                    description: |-
+                      ID of the network IP range
+                      The Id of the fabric network.
                     type: string
                   fabricNetworkIds:
-                    description: The Ids of the fabric networks.
+                    description: |-
+                      The Ids of the fabric networks.
+                      The Ids of the fabric networks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   id:
+                    description: ID of the network IP range
                     type: string
                   ipVersion:
-                    description: 'IP address version: IPv4 or IPv6.'
+                    description: |-
+                      IP address version: IPv4 or IPv6.
+                      IP address version: IPv4 or IPv6.
                     type: string
                   links:
+                    description: Hypermedia as the Engine of Application State (HATEOAS)
+                      of the entity.
                     items:
                       properties:
                         href:
@@ -385,18 +354,29 @@ spec:
                       type: object
                     type: array
                   name:
-                    description: The name of the network IP range.
+                    description: |-
+                      The name of the network IP range.
+                      The name of the network IP range.
                     type: string
                   orgId:
-                    description: The id of the organization this entity belongs to.
+                    description: |-
+                      The id of the organization this entity belongs to.
+                      The id of the organization this entity belongs to.
                     type: string
                   owner:
-                    description: Email of the user that owns the entity.
+                    description: |-
+                      Email of the user that owns the entity.
+                      Email of the user that owns the entity.
                     type: string
                   startIpAddress:
-                    description: Start IP address of the range.
+                    description: |-
+                      Start IP address of the range.
+                      Start IP address of the range.
                     type: string
                   tags:
+                    description: |-
+                      Set of tag keys and values to apply to the resource.
+                      Example: [ { "key" : "vmware", "value": "provider" } ]
                     items:
                       properties:
                         key:
@@ -406,8 +386,9 @@ spec:
                       type: object
                     type: array
                   updatedAt:
-                    description: Date when the entity was last updated. The date is
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when the entity was last updated. The date is ISO 8601 and UTC.
+                      Date when the entity was last updated. The date is ISO 8601 and UTC.
                     type: string
                 type: object
               conditions:

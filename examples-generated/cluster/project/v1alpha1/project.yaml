@@ -1,0 +1,62 @@
+apiVersion: project.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: project/v1alpha1/project
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    administratorRoles:
+    - email: jason@vra.local
+      type: user
+    - email: jason-group@vra.local
+      type: group
+    constraints:
+    - extensibility:
+      - expression: foo:bar
+        mandatory: false
+      - expression: environment:test
+        mandatory: true
+      network:
+      - expression: foo:bar
+        mandatory: false
+      - expression: environment:test
+        mandatory: true
+      storage:
+      - expression: foo:bar
+        mandatory: false
+      - expression: environment:test
+        mandatory: true
+    customProperties:
+      foo: bar
+      foo2: bar2
+    description: terraform test project
+    machineNamingTemplate: $${resource.name}-$${####}
+    memberRoles:
+    - email: tony@vra.local
+      type: user
+    - email: tony-group@vra.local
+      type: group
+    name: ${var.project_name}
+    operationTimeout: 6000
+    placementPolicy: SPREAD
+    sharedResources: false
+    supervisorRoles:
+    - email: ethan@vra.local
+      type: user
+    - email: ethan-group@vra.local
+      type: group
+    viewerRoles:
+    - email: shauna@vra.local
+      type: user
+    - email: shauna-group@vra.local
+      type: group
+    zoneAssignments:
+    - cpuLimit: 1024
+      maxInstances: 2
+      memoryLimitMb: 8192
+      priority: 1
+      storageLimitGb: 65536
+      zoneId: ${data.vra_zone.this.id}

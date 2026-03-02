@@ -1,0 +1,14 @@
+apiVersion: catalogsourceblueprint.crossplane.io/v1alpha1
+kind: CatalogSourceBlueprint
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalogsourceblueprint/v1alpha1/catalogsourceblueprint
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    name: ${var.catalog_source_name}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

@@ -5,14 +5,13 @@ Copyright 2021 Upbound Inc.
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"path/filepath"
 
-	"github.com/crossplane/upjet/pkg/pipeline"
+	"github.com/crossplane/upjet/v2/pkg/pipeline"
 
-	"github.com/avarei/provider-vra/config"
+	"github.com/avarei/provider-vra/v2/config"
 )
 
 func main() {
@@ -24,9 +23,14 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("cannot calculate the absolute path with %s", rootDir))
 	}
-	p, err := config.GetProvider(context.Background(), true)
+	pc := config.GetProvider()
 	if err != nil {
-		panic(fmt.Sprintf("cannot get provider configuration: %v", err))
+		panic(fmt.Sprintf("cannot get cluster provider configuration: %v", err))
 	}
-	pipeline.Run(p, absRootDir)
+	pns := config.GetProviderNamespaced()
+	if err != nil {
+		panic(fmt.Sprintf("cannot get namespaced provider configuration: %v", err))
+	}
+
+	pipeline.Run(pc, pns, absRootDir)
 }

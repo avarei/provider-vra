@@ -1,0 +1,16 @@
+apiVersion: blockdevice.crossplane.io/v1alpha1
+kind: BlockDevice
+metadata:
+  annotations:
+    meta.upbound.io/example-id: blockdevice/v1alpha1/blockdevice
+  labels:
+    testing.upbound.io/example-name: disk1
+  name: disk1
+spec:
+  forProvider:
+    capacityInGb: 10
+    name: terraform_vra_block_device1
+    persistent: true
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

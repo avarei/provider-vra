@@ -1,0 +1,23 @@
+apiVersion: contentsource.crossplane.io/v1alpha1
+kind: ContentSource
+metadata:
+  annotations:
+    meta.upbound.io/example-id: contentsource/v1alpha1/contentsource
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    config:
+    - branch: master
+      contentType: BLUEPRINT
+      integrationId: ${var.integration_id}
+      path: blueprint01
+      repository: vracontent/vra8_content_source_test
+    description: Some content Source
+    name: ${var.content_source_name}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    syncEnabled: "false"
+    typeId: com.gitlab

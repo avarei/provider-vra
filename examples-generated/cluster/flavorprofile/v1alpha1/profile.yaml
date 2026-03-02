@@ -1,0 +1,18 @@
+apiVersion: flavorprofile.crossplane.io/v1alpha1
+kind: Profile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: flavorprofile/v1alpha1/profile
+  labels:
+    testing.upbound.io/example-name: my-aws-flavor-profile
+  name: my-aws-flavor-profile
+spec:
+  forProvider:
+    description: My AWS flavor
+    flavorMapping:
+    - instanceType: t2.small
+      name: small
+    - instanceType: t2.medium
+      name: medium
+    name: AWS
+    regionId: ${data.vra_region.aws.id}

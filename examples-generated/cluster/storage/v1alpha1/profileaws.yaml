@@ -1,0 +1,21 @@
+apiVersion: storage.crossplane.io/v1alpha1
+kind: ProfileAws
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/profileaws
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    defaultItem: false
+    description: AWS Storage Profile with instance store device type.
+    deviceType: ebs
+    iops: "1000"
+    name: aws-with-instance-store-1
+    regionId: ${data.vra_region.this.id}
+    supportsEncryption: false
+    tags:
+    - key: foo
+      value: bar
+    volumeType: io1

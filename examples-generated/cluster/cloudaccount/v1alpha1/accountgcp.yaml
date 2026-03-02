@@ -1,0 +1,25 @@
+apiVersion: cloudaccount.crossplane.io/v1alpha1
+kind: AccountGCP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudaccount/v1alpha1/accountgcp
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    clientEmail: client_email
+    description: terraform test cloud account gcp
+    name: tf-vra-cloud-account-gcp
+    privateKeyId: private_key_id
+    privateKeySecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    projectId: project_id
+    regions:
+    - us-west1
+    - us-west2
+    tags:
+    - key: foo
+      value: bar

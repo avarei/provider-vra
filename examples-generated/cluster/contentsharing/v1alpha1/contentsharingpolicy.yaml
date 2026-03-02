@@ -1,0 +1,19 @@
+apiVersion: contentsharing.crossplane.io/v1alpha1
+kind: ContentSharingPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: contentsharing/v1alpha1/contentsharingpolicy
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    catalogItemIds:
+    - ${var.catalog_item_id}
+    catalogSourceIds:
+    - ${var.catalog_source_id}
+    description: My Content Sharing Policy
+    name: content-sharing-policy
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

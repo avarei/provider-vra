@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: accountazures.cloudaccount.crossplane.io
 spec:
   group: cloudaccount.crossplane.io
@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AccountAzure is the Schema for the AccountAzures API. <no value>
+        description: AccountAzure is the Schema for the AccountAzures API. Creates
+          a vra_cloud_account_azure resource.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +74,14 @@ spec:
               forProvider:
                 properties:
                   applicationId:
-                    description: Azure Client Application ID.
+                    description: |-
+                      Azure Client Application ID.
+                      Azure Client Application ID.
                     type: string
                   applicationKeySecretRef:
-                    description: Azure Client Application Secret Key.
+                    description: |-
+                      Azure Client Application Secret Key.
+                      Azure Client Application Secret Key.
                     properties:
                       key:
                         description: The key to select.
@@ -93,22 +98,32 @@ spec:
                     - namespace
                     type: object
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Name of Azure cloud account.
+                      The name of this resource instance.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   subscriptionId:
-                    description: Azure Subscription ID.
+                    description: |-
+                      Azure Subscription ID.
+                      Azure Subscription ID.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -118,7 +133,9 @@ spec:
                       type: object
                     type: array
                   tenantId:
-                    description: Azure Tenant ID.
+                    description: |-
+                      Azure Tenant ID.
+                      Azure Tenant ID.
                     type: string
                 type: object
               initProvider:
@@ -135,10 +152,14 @@ spec:
                   autoscaler.
                 properties:
                   applicationId:
-                    description: Azure Client Application ID.
+                    description: |-
+                      Azure Client Application ID.
+                      Azure Client Application ID.
                     type: string
                   applicationKeySecretRef:
-                    description: Azure Client Application Secret Key.
+                    description: |-
+                      Azure Client Application Secret Key.
+                      Azure Client Application Secret Key.
                     properties:
                       key:
                         description: The key to select.
@@ -155,22 +176,32 @@ spec:
                     - namespace
                     type: object
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Name of Azure cloud account.
+                      The name of this resource instance.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   subscriptionId:
-                    description: Azure Subscription ID.
+                    description: |-
+                      Azure Subscription ID.
+                      Azure Subscription ID.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -180,7 +211,9 @@ spec:
                       type: object
                     type: array
                   tenantId:
-                    description: Azure Tenant ID.
+                    description: |-
+                      Azure Tenant ID.
+                      Azure Tenant ID.
                     type: string
                 required:
                 - applicationKeySecretRef
@@ -251,93 +284,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -382,18 +334,25 @@ spec:
               atProvider:
                 properties:
                   applicationId:
-                    description: Azure Client Application ID.
+                    description: |-
+                      Azure Client Application ID.
+                      Azure Client Application ID.
                     type: string
                   createdAt:
-                    description: Date when the entity was created. The date is in
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when entity was created. Date and time format is ISO 8601 and UTC.
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   id:
                     type: string
                   links:
+                    description: Hypermedia as the Engine of Application State (HATEOAS)
+                      of entity.
                     items:
                       properties:
                         href:
@@ -408,25 +367,37 @@ spec:
                       type: object
                     type: array
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Name of Azure cloud account.
+                      The name of this resource instance.
                     type: string
                   orgId:
-                    description: The id of the organization this entity belongs to.
+                    description: |-
+                      ID of organization that entity belongs to.
+                      The id of the organization this entity belongs to.
                     type: string
                   owner:
-                    description: Email of the user that owns the entity.
+                    description: |-
+                      Email of entity owner.
+                      Email of the user that owns the entity.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   subscriptionId:
-                    description: Azure Subscription ID.
+                    description: |-
+                      Azure Subscription ID.
+                      Azure Subscription ID.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -436,11 +407,14 @@ spec:
                       type: object
                     type: array
                   tenantId:
-                    description: Azure Tenant ID.
+                    description: |-
+                      Azure Tenant ID.
+                      Azure Tenant ID.
                     type: string
                   updatedAt:
-                    description: Date when the entity was last updated. The date is
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when entity was last updated. Date and time format is ISO 8601 and UTC.
+                      Date when the entity was last updated. The date is ISO 8601 and UTC.
                     type: string
                 type: object
               conditions:

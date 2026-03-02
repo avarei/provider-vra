@@ -1,0 +1,15 @@
+apiVersion: catalogitementitlement.vra.m.crossplane.io/v1alpha1
+kind: CatalogItemEntitlement
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalogitementitlement/v1alpha1/catalogitementitlement
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+  namespace: upbound-system
+spec:
+  forProvider:
+    catalogItemId: ${var.catalog_item_id}
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

@@ -1,0 +1,21 @@
+apiVersion: network.vra.m.crossplane.io/v1alpha1
+kind: NetworkProfile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/networkprofile
+  labels:
+    testing.upbound.io/example-name: simple
+  name: simple
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: Simple Network Profile with no isolation.
+    fabricNetworkIds:
+    - ${data.vra_fabric_network.subnet_1.id}
+    - ${data.vra_fabric_network.subnet_2.id}
+    isolationType: NONE
+    name: no-isolation
+    regionId: ${data.vra_region.this.id}
+    tags:
+    - key: foo
+      value: bar

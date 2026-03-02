@@ -1,0 +1,27 @@
+apiVersion: cloudaccount.crossplane.io/v1alpha1
+kind: AccountVmc
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudaccount/v1alpha1/accountvmc
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    acceptSelfSignedCert: true
+    apiToken: ${var.api_token}
+    dcId: ${var.data_collector_id}
+    description: tf test vmc cloud account
+    name: tf-vra-cloud-account-vmc
+    nsxHostname: ${var.nsx_hostname}
+    regions: ${var.regions}
+    sddcName: ${var.sddc_name}
+    tags:
+    - key: foo
+      value: bar
+    vcenterHostname: ${var.vcenter_hostname}
+    vcenterPasswordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    vcenterUsername: ${var.vcenter_username}

@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: networkprofiles.network.crossplane.io
 spec:
   group: network.crossplane.io
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: NetworkProfile is the Schema for the NetworkProfiles API. <no
-          value>
+        description: NetworkProfile is the Schema for the NetworkProfiles API. Provides
+          a data lookup for vra_network_profile.
         properties:
           apiVersion:
             description: |-
@@ -76,35 +76,66 @@ spec:
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the Network Profile object that is produced from this specification.
+                      For isolationType security group, datastoreId identifies the
+                      Compute Resource Edge datastore. computeCluster and resourcePoolId
+                      identify the Compute Resource Edge cluster. For isolationType
+                      subnet, distributedLogicalRouterStateLink identifies the on-demand
+                      network distributed local router. onDemandNetworkIPAssignmentType
+                      identifies the on-demand network IP range assignment type static,
+                      dynamic, or mixed.
                     type: object
                     x-kubernetes-map-type: granular
                   description:
+                    description: A human-friendly description.
                     type: string
                   fabricNetworkIds:
+                    description: |-
+                      A list of fabric network Ids which are assigned to the network profile.
+                      Example: [ "6543" ]
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   isolatedExternalFabricNetworkId:
+                    description: The id of the fabric network used for outbound access.
                     type: string
                   isolatedNetworkCidrPrefix:
+                    description: The CIDR prefix length to be used for the isolated
+                      networks that are created with the network profile.
                     type: number
                   isolatedNetworkDomainCidr:
+                    description: CIDR of the isolation network domain.
                     type: string
                   isolatedNetworkDomainId:
+                    description: The id of the network domain used for creating isolated
+                      networks.
                     type: string
                   isolationType:
+                    description: Specifies the isolation type e.g. none, subnet or
+                      security group
                     type: string
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   regionId:
+                    description: The id of the region for which this profile is defined
+                      as in VMware Aria Automation.
                     type: string
                   securityGroupIds:
+                    description: |-
+                      A list of security group Ids which are assigned to the network profile.
+                      Example: [ "6545" ]
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this Network Profile. Example: [ { "key" : "ownedBy",
+                      "value": "Rainpole" } ]'
                     items:
                       properties:
                         key:
@@ -130,35 +161,66 @@ spec:
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the Network Profile object that is produced from this specification.
+                      For isolationType security group, datastoreId identifies the
+                      Compute Resource Edge datastore. computeCluster and resourcePoolId
+                      identify the Compute Resource Edge cluster. For isolationType
+                      subnet, distributedLogicalRouterStateLink identifies the on-demand
+                      network distributed local router. onDemandNetworkIPAssignmentType
+                      identifies the on-demand network IP range assignment type static,
+                      dynamic, or mixed.
                     type: object
                     x-kubernetes-map-type: granular
                   description:
+                    description: A human-friendly description.
                     type: string
                   fabricNetworkIds:
+                    description: |-
+                      A list of fabric network Ids which are assigned to the network profile.
+                      Example: [ "6543" ]
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   isolatedExternalFabricNetworkId:
+                    description: The id of the fabric network used for outbound access.
                     type: string
                   isolatedNetworkCidrPrefix:
+                    description: The CIDR prefix length to be used for the isolated
+                      networks that are created with the network profile.
                     type: number
                   isolatedNetworkDomainCidr:
+                    description: CIDR of the isolation network domain.
                     type: string
                   isolatedNetworkDomainId:
+                    description: The id of the network domain used for creating isolated
+                      networks.
                     type: string
                   isolationType:
+                    description: Specifies the isolation type e.g. none, subnet or
+                      security group
                     type: string
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   regionId:
+                    description: The id of the region for which this profile is defined
+                      as in VMware Aria Automation.
                     type: string
                   securityGroupIds:
+                    description: |-
+                      A list of security group Ids which are assigned to the network profile.
+                      Example: [ "6545" ]
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this Network Profile. Example: [ { "key" : "ownedBy",
+                      "value": "Rainpole" } ]'
                     items:
                       properties:
                         key:
@@ -234,93 +296,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -350,20 +331,38 @@ spec:
               atProvider:
                 properties:
                   cloudAccountId:
-                    description: The ID of the cloud account this entity belongs to.
+                    description: |-
+                      The ID of the cloud account this flavor profile belongs to.
+                      The ID of the cloud account this entity belongs to.
                     type: string
                   createdAt:
+                    description: Date when  entity was created. Date and time format
+                      is ISO 8601 and UTC.
                     type: string
                   customProperties:
                     additionalProperties:
                       type: string
+                    description: Additional properties that may be used to extend
+                      the Network Profile object that is produced from this specification.
+                      For isolationType security group, datastoreId identifies the
+                      Compute Resource Edge datastore. computeCluster and resourcePoolId
+                      identify the Compute Resource Edge cluster. For isolationType
+                      subnet, distributedLogicalRouterStateLink identifies the on-demand
+                      network distributed local router. onDemandNetworkIPAssignmentType
+                      identifies the on-demand network IP range assignment type static,
+                      dynamic, or mixed.
                     type: object
                     x-kubernetes-map-type: granular
                   description:
+                    description: A human-friendly description.
                     type: string
                   externalRegionId:
+                    description: The external regionId of the resource.
                     type: string
                   fabricNetworkIds:
+                    description: |-
+                      A list of fabric network Ids which are assigned to the network profile.
+                      Example: [ "6543" ]
                     items:
                       type: string
                     type: array
@@ -371,16 +370,26 @@ spec:
                   id:
                     type: string
                   isolatedExternalFabricNetworkId:
+                    description: The id of the fabric network used for outbound access.
                     type: string
                   isolatedNetworkCidrPrefix:
+                    description: The CIDR prefix length to be used for the isolated
+                      networks that are created with the network profile.
                     type: number
                   isolatedNetworkDomainCidr:
+                    description: CIDR of the isolation network domain.
                     type: string
                   isolatedNetworkDomainId:
+                    description: The id of the network domain used for creating isolated
+                      networks.
                     type: string
                   isolationType:
+                    description: Specifies the isolation type e.g. none, subnet or
+                      security group
                     type: string
                   links:
+                    description: Hypermedia as the Engine of Application State (HATEOAS)
+                      of the entity.
                     items:
                       properties:
                         href:
@@ -395,21 +404,35 @@ spec:
                       type: object
                     type: array
                   name:
+                    description: A human-friendly name used as an identifier in APIs
+                      that support this option.
                     type: string
                   orgId:
+                    description: ID of organization that entity belongs to.
                     type: string
                   organizationId:
+                    description: The id of the organization this entity belongs to.
+                      Deprecated, refer to org_id instead.
                     type: string
                   owner:
+                    description: Email of the user that owns the entity.
                     type: string
                   regionId:
+                    description: The id of the region for which this profile is defined
+                      as in VMware Aria Automation.
                     type: string
                   securityGroupIds:
+                    description: |-
+                      A list of security group Ids which are assigned to the network profile.
+                      Example: [ "6545" ]
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   tags:
+                    description: 'A set of tag keys and optional values that were
+                      set on this Network Profile. Example: [ { "key" : "ownedBy",
+                      "value": "Rainpole" } ]'
                     items:
                       properties:
                         key:
@@ -419,6 +442,8 @@ spec:
                       type: object
                     type: array
                   updatedAt:
+                    description: Date when the entity was last updated. The date is
+                      ISO 8601 and UTC.
                     type: string
                 type: object
               conditions:

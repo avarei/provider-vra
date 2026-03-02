@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.18.0
   name: accountvmcs.cloudaccount.crossplane.io
 spec:
   group: cloudaccount.crossplane.io
@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AccountVmc is the Schema for the AccountVmcs API. <no value>
+        description: AccountVmc is the Schema for the AccountVmcs API. Creates a vra_cloud_account_vmc
+          resource.
         properties:
           apiVersion:
             description: |-
@@ -73,33 +74,48 @@ spec:
               forProvider:
                 properties:
                   acceptSelfSignedCert:
-                    description: Whether to accept self signed certificate when connecting
-                      to the vCenter Server.
+                    description: |-
+                      Accept self-signed certificate when connecting to the cloud account.
+                      Whether to accept self signed certificate when connecting to the vCenter Server.
                     type: boolean
                   apiToken:
+                    description: VMC API access key.
                     type: string
                   dcId:
-                    description: Identifier of a data collector vm deployed in the
-                      on premise infrastructure.
+                    description: |-
+                      Identifier of a data collector VM deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.
+                      Identifier of a data collector vm deployed in the on premise infrastructure.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of this resource instance.
                     type: string
                   nsxHostname:
+                    description: IP address of the NSX Manager server in the specified
+                      SDDC / FQDN.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   sddcName:
+                    description: Identifier of the on-premise SDDC to be used by the
+                      cloud account. Note that NSX-V SDDCs are not supported.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -109,10 +125,11 @@ spec:
                       type: object
                     type: array
                   vcenterHostname:
+                    description: IP address or FQDN of the vCenter Server in the specified
+                      SDDC. The cloud proxy belongs on this vCenter.
                     type: string
                   vcenterPasswordSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
+                    description: Password used to authenticate to the cloud Account.
                     properties:
                       key:
                         description: The key to select.
@@ -129,6 +146,9 @@ spec:
                     - namespace
                     type: object
                   vcenterUsername:
+                    description: vCenter user name for the specified SDDC. The user
+                      requires CloudAdmin credentials. The user does not require CloudGlobalAdmin
+                      credentials.
                     type: string
                 type: object
               initProvider:
@@ -145,33 +165,48 @@ spec:
                   autoscaler.
                 properties:
                   acceptSelfSignedCert:
-                    description: Whether to accept self signed certificate when connecting
-                      to the vCenter Server.
+                    description: |-
+                      Accept self-signed certificate when connecting to the cloud account.
+                      Whether to accept self signed certificate when connecting to the vCenter Server.
                     type: boolean
                   apiToken:
+                    description: VMC API access key.
                     type: string
                   dcId:
-                    description: Identifier of a data collector vm deployed in the
-                      on premise infrastructure.
+                    description: |-
+                      Identifier of a data collector VM deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.
+                      Identifier of a data collector vm deployed in the on premise infrastructure.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of this resource instance.
                     type: string
                   nsxHostname:
+                    description: IP address of the NSX Manager server in the specified
+                      SDDC / FQDN.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   sddcName:
+                    description: Identifier of the on-premise SDDC to be used by the
+                      cloud account. Note that NSX-V SDDCs are not supported.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -181,10 +216,11 @@ spec:
                       type: object
                     type: array
                   vcenterHostname:
+                    description: IP address or FQDN of the vCenter Server in the specified
+                      SDDC. The cloud proxy belongs on this vCenter.
                     type: string
                   vcenterPasswordSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
+                    description: Password used to authenticate to the cloud Account.
                     properties:
                       key:
                         description: The key to select.
@@ -201,6 +237,9 @@ spec:
                     - namespace
                     type: object
                   vcenterUsername:
+                    description: vCenter user name for the specified SDDC. The user
+                      requires CloudAdmin credentials. The user does not require CloudGlobalAdmin
+                      credentials.
                     type: string
                 required:
                 - vcenterPasswordSecretRef
@@ -271,93 +310,12 @@ spec:
                 required:
                 - name
                 type: object
-              publishConnectionDetailsTo:
-                description: |-
-                  PublishConnectionDetailsTo specifies the connection secret config which
-                  contains a name, metadata and a reference to secret store config to
-                  which any connection details for this managed resource should be written.
-                  Connection details frequently include the endpoint, username,
-                  and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: |-
-                      SecretStoreConfigRef specifies which secret store config should be used
-                      for this ConnectionSecret.
-                    properties:
-                      name:
-                        description: Name of the referenced object.
-                        type: string
-                      policy:
-                        description: Policies for referencing.
-                        properties:
-                          resolution:
-                            default: Required
-                            description: |-
-                              Resolution specifies whether resolution of this reference is required.
-                              The default is 'Required', which means the reconcile will fail if the
-                              reference cannot be resolved. 'Optional' means this reference will be
-                              a no-op if it cannot be resolved.
-                            enum:
-                            - Required
-                            - Optional
-                            type: string
-                          resolve:
-                            description: |-
-                              Resolve specifies when this reference should be resolved. The default
-                              is 'IfNotPresent', which will attempt to resolve the reference only when
-                              the corresponding field is not present. Use 'Always' to resolve the
-                              reference on every reconcile.
-                            enum:
-                            - Always
-                            - IfNotPresent
-                            type: string
-                        type: object
-                    required:
-                    - name
-                    type: object
-                  metadata:
-                    description: Metadata is the metadata for connection secret.
-                    properties:
-                      annotations:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Annotations are the annotations to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.annotations".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      labels:
-                        additionalProperties:
-                          type: string
-                        description: |-
-                          Labels are the labels/tags to be added to connection secret.
-                          - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store types.
-                        type: object
-                      type:
-                        description: |-
-                          Type is the SecretType for the connection secret.
-                          - Only valid for Kubernetes Secret Stores.
-                        type: string
-                    type: object
-                  name:
-                    description: Name is the name of the connection secret.
-                    type: string
-                required:
-                - name
-                type: object
               writeConnectionSecretToRef:
                 description: |-
                   WriteConnectionSecretToReference specifies the namespace and name of a
                   Secret to which any connection details for this managed resource should
                   be written. Connection details frequently include the endpoint, username,
                   and password required to connect to the managed resource.
-                  This field is planned to be replaced in a future release in favor of
-                  PublishConnectionDetailsTo. Currently, both could be set independently
-                  and connection details would be published to both without affecting
-                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -410,25 +368,34 @@ spec:
               atProvider:
                 properties:
                   acceptSelfSignedCert:
-                    description: Whether to accept self signed certificate when connecting
-                      to the vCenter Server.
+                    description: |-
+                      Accept self-signed certificate when connecting to the cloud account.
+                      Whether to accept self signed certificate when connecting to the vCenter Server.
                     type: boolean
                   apiToken:
+                    description: VMC API access key.
                     type: string
                   createdAt:
-                    description: Date when the entity was created. The date is in
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when entity was created. Date and time format is ISO 8601 and UTC.
+                      Date when the entity was created. The date is in ISO 8601 and UTC.
                     type: string
                   dcId:
-                    description: Identifier of a data collector vm deployed in the
-                      on premise infrastructure.
+                    description: |-
+                      Identifier of a data collector VM deployed in the on premise infrastructure. Refer to the data-collector API to create or list data collector.
+                      Identifier of a data collector vm deployed in the on premise infrastructure.
                     type: string
                   description:
-                    description: A human-friendly description.
+                    description: |-
+                      Human-friendly description.
+                      A human-friendly description.
                     type: string
                   id:
+                    description: ID of the VMC cloud account.
                     type: string
                   links:
+                    description: Hypermedia as the Engine of Application State (HATEOAS)
+                      of entity.
                     items:
                       properties:
                         href:
@@ -443,26 +410,40 @@ spec:
                       type: object
                     type: array
                   name:
-                    description: The name of this resource instance.
+                    description: |-
+                      Human-friendly name used as an identifier in APIs that support this option.
+                      The name of this resource instance.
                     type: string
                   nsxHostname:
+                    description: IP address of the NSX Manager server in the specified
+                      SDDC / FQDN.
                     type: string
                   orgId:
-                    description: The id of the organization this entity belongs to.
+                    description: |-
+                      ID of organization that entity belongs to.
+                      The id of the organization this entity belongs to.
                     type: string
                   owner:
-                    description: Email of the user that owns the entity.
+                    description: |-
+                      Email of entity owner.
+                      Email of the user that owns the entity.
                     type: string
                   regions:
-                    description: The set of region ids that will be enabled for this
-                      cloud account.
+                    description: |-
+                      Set of region names enabled for the cloud account.
+                      The set of region ids that will be enabled for this cloud account.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   sddcName:
+                    description: Identifier of the on-premise SDDC to be used by the
+                      cloud account. Note that NSX-V SDDCs are not supported.
                     type: string
                   tags:
+                    description: 'Set of tag keys and values to apply to the cloud
+                      account. Example: [ { "key" : "vmware", "value": "provider"
+                      } ]'
                     items:
                       properties:
                         key:
@@ -472,12 +453,18 @@ spec:
                       type: object
                     type: array
                   updatedAt:
-                    description: Date when the entity was last updated. The date is
-                      ISO 8601 and UTC.
+                    description: |-
+                      Date when the entity was last updated. Date and time format is ISO 8601 and UTC.
+                      Date when the entity was last updated. The date is ISO 8601 and UTC.
                     type: string
                   vcenterHostname:
+                    description: IP address or FQDN of the vCenter Server in the specified
+                      SDDC. The cloud proxy belongs on this vCenter.
                     type: string
                   vcenterUsername:
+                    description: vCenter user name for the specified SDDC. The user
+                      requires CloudAdmin credentials. The user does not require CloudGlobalAdmin
+                      credentials.
                     type: string
                 type: object
               conditions:

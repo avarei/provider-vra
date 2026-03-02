@@ -1,0 +1,28 @@
+apiVersion: storage.crossplane.io/v1alpha1
+kind: Profile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/profile
+  labels:
+    testing.upbound.io/example-name: this
+  name: this
+spec:
+  forProvider:
+    defaultItem: false
+    description: vSphere Storage Profile with standard independent non-persistent
+      disk.
+    diskProperties:
+      independent: "true"
+      limitIops: "2000"
+      persistent: "false"
+      provisioningType: eagerZeroedThick
+      shares: "1500"
+      sharesLevel: custom
+    diskTargetProperties:
+      datastoreId: ${data.vra_fabric_datastore_vsphere.this.id}
+      storagePolicyId: ${data.vra_fabric_storage_policy_vsphere.this.id}
+    name: vSphere-standard-independent-non-persistent-disk
+    regionId: ${data.vra_region.this.id}
+    tags:
+    - key: foo
+      value: bar

@@ -1,0 +1,19 @@
+apiVersion: network.vra.m.crossplane.io/v1alpha1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/network
+  labels:
+    testing.upbound.io/example-name: my_network
+  name: my-network
+  namespace: upbound-system
+spec:
+  forProvider:
+    constraints:
+    - expression: pci
+      mandatory: true
+    name: terraform_vra_network-%d
+    outboundAccess: false
+    tags:
+    - key: foo
+      value: bar
