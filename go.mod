@@ -1,6 +1,6 @@
 module github.com/avarei/provider-vra/v2
 
-go 1.24.7
+go 1.25.7
 
 require (
 	dario.cat/mergo v1.0.2
