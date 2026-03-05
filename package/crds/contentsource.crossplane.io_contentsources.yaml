@@ -77,35 +77,33 @@ spec:
                     description: |-
                       Content source custom configuration.
                       The content source custom configuration.
-                    items:
-                      properties:
-                        branch:
-                          description: |-
-                            Content source branch name.
-                            The content source branch name.
-                          type: string
-                        contentType:
-                          description: |-
-                            Content source type.
-                            The content source type.
-                          type: string
-                        integrationId:
-                          description: |-
-                            Content source integration id as seen integrations.
-                            The content source integration id as seen integrations.
-                          type: string
-                        path:
-                          description: |-
-                            Path to refer to in the content source repository and branch.
-                            Path to refer to in the content source repository and branch.
-                          type: string
-                        repository:
-                          description: |-
-                            Content source repository.
-                            The content source repository.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        description: |-
+                          Content source branch name.
+                          The content source branch name.
+                        type: string
+                      contentType:
+                        description: |-
+                          Content source type.
+                          The content source type.
+                        type: string
+                      integrationId:
+                        description: |-
+                          Content source integration id as seen integrations.
+                          The content source integration id as seen integrations.
+                        type: string
+                      path:
+                        description: |-
+                          Path to refer to in the content source repository and branch.
+                          Path to refer to in the content source repository and branch.
+                        type: string
+                      repository:
+                        description: |-
+                          Content source repository.
+                          The content source repository.
+                        type: string
+                    type: object
                   description:
                     description: |-
                       A human-friendly description.
@@ -223,35 +221,33 @@ spec:
                     description: |-
                       Content source custom configuration.
                       The content source custom configuration.
-                    items:
-                      properties:
-                        branch:
-                          description: |-
-                            Content source branch name.
-                            The content source branch name.
-                          type: string
-                        contentType:
-                          description: |-
-                            Content source type.
-                            The content source type.
-                          type: string
-                        integrationId:
-                          description: |-
-                            Content source integration id as seen integrations.
-                            The content source integration id as seen integrations.
-                          type: string
-                        path:
-                          description: |-
-                            Path to refer to in the content source repository and branch.
-                            Path to refer to in the content source repository and branch.
-                          type: string
-                        repository:
-                          description: |-
-                            Content source repository.
-                            The content source repository.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        description: |-
+                          Content source branch name.
+                          The content source branch name.
+                        type: string
+                      contentType:
+                        description: |-
+                          Content source type.
+                          The content source type.
+                        type: string
+                      integrationId:
+                        description: |-
+                          Content source integration id as seen integrations.
+                          The content source integration id as seen integrations.
+                        type: string
+                      path:
+                        description: |-
+                          Path to refer to in the content source repository and branch.
+                          Path to refer to in the content source repository and branch.
+                        type: string
+                      repository:
+                        description: |-
+                          Content source repository.
+                          The content source repository.
+                        type: string
+                    type: object
                   description:
                     description: |-
                       A human-friendly description.
@@ -464,40 +460,38 @@ spec:
                     description: |-
                       Content source custom configuration.
                       The content source custom configuration.
-                    items:
-                      properties:
-                        branch:
-                          description: |-
-                            Content source branch name.
-                            The content source branch name.
-                          type: string
-                        contentType:
-                          description: |-
-                            Content source type.
-                            The content source type.
-                          type: string
-                        integrationId:
-                          description: |-
-                            Content source integration id as seen integrations.
-                            The content source integration id as seen integrations.
-                          type: string
-                        path:
-                          description: |-
-                            Path to refer to in the content source repository and branch.
-                            Path to refer to in the content source repository and branch.
-                          type: string
-                        projectName:
-                          description: |-
-                            Name of the project.
-                            The name of the project.
-                          type: string
-                        repository:
-                          description: |-
-                            Content source repository.
-                            The content source repository.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      branch:
+                        description: |-
+                          Content source branch name.
+                          The content source branch name.
+                        type: string
+                      contentType:
+                        description: |-
+                          Content source type.
+                          The content source type.
+                        type: string
+                      integrationId:
+                        description: |-
+                          Content source integration id as seen integrations.
+                          The content source integration id as seen integrations.
+                        type: string
+                      path:
+                        description: |-
+                          Path to refer to in the content source repository and branch.
+                          Path to refer to in the content source repository and branch.
+                        type: string
+                      projectName:
+                        description: |-
+                          Name of the project.
+                          The name of the project.
+                        type: string
+                      repository:
+                        description: |-
+                          Content source repository.
+                          The content source repository.
+                        type: string
+                    type: object
                   createdAt:
                     description: |-
                       Date when the entity was created. The date is in ISO 6801 and UTC.

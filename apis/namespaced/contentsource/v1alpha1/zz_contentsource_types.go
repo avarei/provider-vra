@@ -96,7 +96,7 @@ type ContentSourceInitParameters struct {
 
 	// Content source custom configuration.
 	// The content source custom configuration.
-	Config []ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// A human-friendly description.
 	// A human-friendly description for the catalog source instance.
@@ -132,7 +132,7 @@ type ContentSourceObservation struct {
 
 	// Content source custom configuration.
 	// The content source custom configuration.
-	Config []ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
 
 	// Date when the entity was created. The date is in ISO 6801 and UTC.
 	// Date when the entity was created. The date is in ISO 8601 and UTC.
@@ -183,7 +183,7 @@ type ContentSourceParameters struct {
 	// Content source custom configuration.
 	// The content source custom configuration.
 	// +kubebuilder:validation:Optional
-	Config []ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
+	Config *ConfigParameters `json:"config,omitempty" tf:"config,omitempty"`
 
 	// A human-friendly description.
 	// A human-friendly description for the catalog source instance.
