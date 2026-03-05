@@ -5,11 +5,14 @@ Copyright 2021 Upbound Inc.
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
 
 	"github.com/crossplane/upjet/v2/pkg/pipeline"
+
+	//tfvraxpprovider "github.com/vmware/terraform-provider-vra/xpprovider"
 
 	"github.com/avarei/provider-vra/v2/config"
 )
@@ -23,11 +26,12 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("cannot calculate the absolute path with %s", rootDir))
 	}
-	pc := config.GetProvider()
+
+	pc, err := config.GetProvider(context.Background(), true)
 	if err != nil {
 		panic(fmt.Sprintf("cannot get cluster provider configuration: %v", err))
 	}
-	pns := config.GetProviderNamespaced()
+	pns, err := config.GetProviderNamespaced(context.Background(), true)
 	if err != nil {
 		panic(fmt.Sprintf("cannot get namespaced provider configuration: %v", err))
 	}

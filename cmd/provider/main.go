@@ -22,6 +22,7 @@ import (
 	"github.com/crossplane/crossplane-runtime/v2/pkg/reconciler/managed"
 	"github.com/crossplane/crossplane-runtime/v2/pkg/statemetrics"
 	tjcontroller "github.com/crossplane/upjet/v2/pkg/controller"
+	"github.com/crossplane/upjet/v2/pkg/terraform"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -107,9 +108,9 @@ func main() {
 
 	kingpin.FatalIfError(err, "Cannot initialize the provider configuration")
 
-	providerCluster := config.GetProvider()
+	providerCluster, err := config.GetProvider(context.Background(), false)
 	kingpin.FatalIfError(err, "Cannot initialize the cluster provider configuration")
-	providerNamespaced := config.GetProviderNamespaced()
+	providerNamespaced, err := config.GetProviderNamespaced(context.Background(), false)
 	kingpin.FatalIfError(err, "Cannot initialize the namespaced provider configuration")
 
 	featureFlags := &feature.Flags{}
@@ -128,6 +129,7 @@ func main() {
 			},
 		},
 		Provider:              providerCluster,
+		WorkspaceStore:        terraform.NewWorkspaceStore(log),
 		SetupFn:               clients.TerraformSetupBuilder(providerCluster.TerraformProvider),
 		PollJitter:            pollJitter,
 		OperationTrackerStore: tjcontroller.NewOperationStore(log),
