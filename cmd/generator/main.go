@@ -12,8 +12,6 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/pipeline"
 
-	//tfvraxpprovider "github.com/vmware/terraform-provider-vra/xpprovider"
-
 	"github.com/avarei/provider-vra/v2/config"
 )
 
