@@ -14,6 +14,8 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
+	tfsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+
 	"github.com/crossplane/upjet/v2/pkg/terraform"
 
 	clusterv1beta1 "github.com/avarei/provider-vra/v2/apis/cluster/v1beta1"
@@ -91,8 +93,28 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 			"username": creds["username"],
 			"password": creds["password"],
 		}*/
-		return ps, nil
+		return ps, errors.Wrap(
+			configureNoForkVaultClient(ctx, &ps, *tfProvider),
+			"failed to configure the no-fork GCP client",
+		)
 	}
+}
+
+func configureNoForkVaultClient(ctx context.Context, ps *terraform.Setup, p schema.Provider) error {
+	// Please be aware that this implementation relies on the schema.Provider
+	// parameter `p` being a non-pointer. This is because normally
+	// the Terraform plugin SDK normally configures the provider
+	// only once and using a pointer argument here will cause
+	// race conditions between resources referring to different
+	// ProviderConfigs.
+	diag := p.Configure(context.WithoutCancel(ctx), &tfsdk.ResourceConfig{
+		Config: ps.Configuration,
+	})
+	if diag != nil && diag.HasError() {
+		return errors.Errorf("failed to configure the provider: %v", diag)
+	}
+	ps.Meta = p.Meta()
+	return nil
 }
 
 func toSharedPCSpec(pc *clusterv1beta1.ProviderConfig) (*namespacedv1beta1.ProviderConfigSpec, error) {
