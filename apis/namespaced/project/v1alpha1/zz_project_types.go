@@ -182,7 +182,7 @@ type ProjectInitParameters struct {
 
 	// A list of storage, network, and extensibility constraints to be applied when provisioning through this project.
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
-	Constraints []ConstraintsInitParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsInitParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project.
 	// The project custom properties which are added to all requests in this project
@@ -253,7 +253,7 @@ type ProjectObservation struct {
 
 	// A list of storage, network, and extensibility constraints to be applied when provisioning through this project.
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
-	Constraints []ConstraintsObservation `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsObservation `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project.
 	// The project custom properties which are added to all requests in this project
@@ -329,7 +329,7 @@ type ProjectParameters struct {
 	// A list of storage, network, and extensibility constraints to be applied when provisioning through this project.
 	// List of storage, network and extensibility constraints to be applied when provisioning through this project.
 	// +kubebuilder:validation:Optional
-	Constraints []ConstraintsParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
+	Constraints *ConstraintsParameters `json:"constraints,omitempty" tf:"constraints,omitempty"`
 
 	// The project custom properties which are added to all requests in this project.
 	// The project custom properties which are added to all requests in this project

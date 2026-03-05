@@ -68,15 +68,13 @@ spec:
                     description: |-
                       Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
                       Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: |-
-                            Calid cloud config data in json-escaped yaml syntax.
-                            A valid cloud config data in json-escaped yaml syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: |-
+                          Calid cloud config data in json-escaped yaml syntax.
+                          A valid cloud config data in json-escaped yaml syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: |-
                       Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]
@@ -426,15 +424,13 @@ spec:
                     description: |-
                       Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
                       Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: |-
-                            Calid cloud config data in json-escaped yaml syntax.
-                            A valid cloud config data in json-escaped yaml syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: |-
+                          Calid cloud config data in json-escaped yaml syntax.
+                          A valid cloud config data in json-escaped yaml syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: |-
                       Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]
@@ -848,15 +844,13 @@ spec:
                     description: |-
                       Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
                       Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-                    items:
-                      properties:
-                        content:
-                          description: |-
-                            Calid cloud config data in json-escaped yaml syntax.
-                            A valid cloud config data in json-escaped yaml syntax.
-                          type: string
-                      type: object
-                    type: array
+                    properties:
+                      content:
+                        description: |-
+                          Calid cloud config data in json-escaped yaml syntax.
+                          A valid cloud config data in json-escaped yaml syntax.
+                        type: string
+                    type: object
                   constraints:
                     description: |-
                       Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]

@@ -247,7 +247,7 @@ type MachineInitParameters struct {
 
 	// Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-	BootConfig []BootConfigInitParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigInitParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
@@ -317,7 +317,7 @@ type MachineObservation struct {
 
 	// Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
-	BootConfig []BootConfigObservation `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigObservation `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.
@@ -409,7 +409,7 @@ type MachineParameters struct {
 	// Machine boot config that will be passed to the instance. Used to perform common automated configuration tasks and even run scripts after instance starts.
 	// Machine boot config that will be passed to the instance that can be used to perform common automated configuration tasks and even run scripts after the instance starts.
 	// +kubebuilder:validation:Optional
-	BootConfig []BootConfigParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
+	BootConfig *BootConfigParameters `json:"bootConfig,omitempty" tf:"boot_config,omitempty"`
 
 	// Constraints used to drive placement policies for the virtual machine produced from the specification. Constraint expressions are matched against tags on existing placement targets. Example: [{"mandatory" : "true", "expression": "environment":"prod"}, {"mandatory" : "false", "expression": "pci"}]
 	// Constraints that are used to drive placement policies for entities such as image, network, storage, etc. Constraint expressions are matched against tags on existing placement targets.

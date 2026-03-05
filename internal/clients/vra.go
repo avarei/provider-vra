@@ -60,7 +60,7 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		ps.Configuration = map[string]interface{}{}
+		ps.Configuration = map[string]any{}
 		if v, ok := creds[keyURL]; ok {
 			ps.Configuration[keyURL] = v
 		}
