@@ -2,6 +2,8 @@ module github.com/avarei/provider-vra/v2
 
 go 1.25.7
 
+replace github.com/vmware/terraform-provider-vra => github.com/avarei/terraform-provider-vra v0.16.1-alpha
+
 require (
 	dario.cat/mergo v1.0.2
 	github.com/crossplane/crossplane-runtime/v2 v2.1.0
@@ -109,7 +111,7 @@ require (
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
-	github.com/vmware/vra-sdk-go v0.6.4 // indirect
+	github.com/vmware/vra-sdk-go v0.6.5 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xhit/go-str2duration/v2 v2.1.0 // indirect
 	github.com/yuin/goldmark v1.7.4 // indirect
