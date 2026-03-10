@@ -1,6 +1,6 @@
 module github.com/avarei/provider-vra/v2
 
-go 1.25.7
+go 1.25.8
 
 replace github.com/vmware/terraform-provider-vra => github.com/avarei/terraform-provider-vra v0.16.1-alpha
 
